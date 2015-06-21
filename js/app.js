@@ -93,7 +93,7 @@
 		};
 	}
 
-	csv.read('../data/sueña5.txt', function(err, data) {
+	csv.read('data/sueña5.txt', function(err, data) {
 
 		if (err) {
 			console.log(err);
