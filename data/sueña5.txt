@@ -1,0 +1,43 @@
+spanish,russian
+embalsar,запруживать
+embalse,запруда
+pantano,водохранилище
+salobre,соленый
+caudal,запас воды в реке
+dulce,пресный
+vega,плодородная долина
+abrigo,защита
+atraer,привлекать
+cordillera,горная цепь
+montaña,гора
+río,река
+cabo,мыс
+bahía,бухта
+ribera,берег
+playa,пляж
+meandro,излучина
+caleta,небольшая бухта
+colina,холм
+valle,долина
+isla,остров
+mar,море
+continente,континент
+monte,гора
+meseta,плато
+afluente,приток
+cala,небольшая бухта
+desierto,пустыня
+golfo,залив
+archipiélago,архипелаг
+alameda,тополиная роща
+península,полуостров
+llanura,равнина
+delta,дельта
+bosque,лес
+duna,дюна
+álamo,тополь
+desembocar,впадать
+glaciar,ледник
+lince,рысь
+parapente,парапланеризм
+globo,воздушный шар

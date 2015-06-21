@@ -1,0 +1,13 @@
+
+body {
+    background-color: #e4e2e3;
+}
+
+#app {
+    width: 80%;
+    margin: auto;
+}
+
+.quiz {
+    text-align: center;
+}
