@@ -2,7 +2,7 @@ spanish,russian
 embalsar,запруживать
 embalse,запруда
 pantano,водохранилище
-salobre,соленый
+salobre,солоноватый
 caudal,запас воды в реке
 dulce,пресный
 vega,плодородная долина
