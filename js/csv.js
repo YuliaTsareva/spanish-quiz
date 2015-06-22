@@ -1,3 +1,5 @@
+'use strict';
+
 var parse = require('csv-parse');
 
 function read(url, callback) {
