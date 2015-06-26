@@ -51,7 +51,7 @@ function selectGame() {
 	};
 }
 
-csv.read('../data/el_tiempo.txt', function (err, data) {
+csv.read('data/el_tiempo.txt', function (err, data) {
 
 	if (err) {
 		console.log(err);
