@@ -1,0 +1,29 @@
+spanish,russian
+tiempo,погода
+torrencial,проливной (дождь)
+lluvia,дождь
+inundación,наводнение
+otoño,осень
+primavera,весна
+verano,лето
+invierno,зима
+ventisca,снежная буря
+viento,ветер
+uracán,ураган
+calor,жара
+sequía,засуха
+nieve,снег
+lluvioso,дождливый
+bochornoso,знойный
+caluroso,жаркий
+soleado,солнечный
+seco,сухой
+otoñal,осенний
+fresco,прохладный
+cálido,теплый
+revuelto,изменчивый
+húmedo,влажный
+gélido,ледяной
+primaveral,весенний
+estival,летний
+agradable,приятный

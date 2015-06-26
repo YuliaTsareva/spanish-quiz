@@ -1,4 +1,3 @@
-
 var React = require('react');
 
 class Word extends React.Component {

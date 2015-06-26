@@ -1,7 +1,7 @@
-
 var _ = require('underscore');
 var React = require('react');
 
+var Progress = require('./Progress');
 var Word = require('./Word');
 
 class Quiz extends React.Component {
@@ -10,36 +10,66 @@ class Quiz extends React.Component {
 		super(props);
 
 		this.handleWordSelected = this.handleWordSelected.bind(this);
-		this.createInitialState = this.createInitialState.bind(this);
+		this.getInitialState = this.getInitialState.bind(this);
 
-		this.state = this.createInitialState();
-	}
-
-	createInitialState() {
-		return this.props.data.selectGame();
+		this.state = this.getInitialState();
 	}
 
 	handleWordSelected(word) {
-		var isCorrect = this.state.checkAnswer(word);
 
-		if (isCorrect) {
+		var isCorrect = this.state.checkAnswer(this.state.currentQuestion.question, word);
 
-			setTimeout(() => { this.setState(this.createInitialState()); }, 1000);
-		}
-
-		var selected = _.find(this.state.words, w => w.spanish === word);
+		var selected = _.find(this.state.currentQuestion.options, w => w.spanish === word);
 		selected.isCorrect = isCorrect;
 
 		this.setState({
-			words: this.state.words
+			questions: this.state.questions
+		});
+
+		if (isCorrect) {
+
+			setTimeout(() => {
+
+				var questionDone = this.state.questionsDone + 1;
+
+				var newState;
+
+				if (questionDone === this.state.questionsCount) {
+
+					this.setState({
+						questionsDone: questionDone
+					});
+
+					alert('You are AWESOME!');
+					newState = this.getInitialState();
+				} else {
+
+					newState = this.state;
+					newState.questionsDone = questionDone;
+					newState.currentQuestion = newState.questions[questionDone];
+				}
+
+				this.setState(newState);
+			}, 1000);
+		}
+	}
+
+	getInitialState() {
+
+		var state = this.props.data.selectGame();
+
+		return _.extend(state, {
+			questionsDone: 0,
+			currentQuestion: state.questions[0]
 		});
 	}
 
 	render() {
 
 		return <div className='quiz'>
-			<h3 className='question'>{this.state.question}</h3>
-			{this.state.words.map(function (word) {
+			<Progress current={this.state.questionsDone} total={this.state.questionsCount} />
+			<h3 className='question'>{this.state.currentQuestion.question}</h3>
+			{this.state.currentQuestion.options.map(function (word) {
 				return <div>{word.isCorrect}
 					<Word word={word.spanish} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
 				</div>;
