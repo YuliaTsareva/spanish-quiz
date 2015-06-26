@@ -5,11 +5,11 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	browserify = require('browserify'),
 	source = require('vinyl-source-stream'),
-	reactify = require('reactify');
+	babelify = require('babelify');
 
 gulp.task('browserify', function() {
 	return browserify('./js/app.js', {debug: true})
-		.transform(reactify)
+		.transform(babelify)
 		.bundle()
 		.pipe(source('app.min.js'))
 		.pipe(gulp.dest('./dist'))

@@ -1,110 +1,67 @@
-/** @jsx React.DOM */
-(function() {
-	'use strict';
+'use strict';
 
-	var _ = require('underscore');
-	var React = require('react');
-	var csv = require('./csv');
+var _ = require('underscore');
+var React = require('react');
 
-	var Quiz = React.createClass({
-		propTypes: {
-			data: React.PropTypes.array.isRequired
-		},
-		getInitialState: function () {
-			return this.props.data.selectGame();
-		},
-		handleWordSelected: function(word) {
-			var isCorrect = this.state.checkAnswer(word);
+var csv = require('./csv');
+var Quiz = require('./components/Quiz');
 
-			if (isCorrect) {
+var MAX_QUESTIONS_COUNT = 10;
+var OPTIONS_COUNT = 4;
 
-				var that = this;
+function selectGame() {
 
-				setTimeout(function() {
-					that.setState(that.getInitialState());
-				}, 1000);
-			}
+	var allWords = this;
 
-			var selected = _.find(this.state.words, function(w) {
-				return w.spanish === word;
-			});
-			selected.isCorrect = isCorrect;
+	var questionsCount = Math.min(allWords.length, MAX_QUESTIONS_COUNT);
 
-			this.setState({
-				words: this.state.words
-			});
-		},
-		render: function() {
+	var questions = _.map(_.shuffle(allWords).slice(0, questionsCount), function(q) {
 
-			return <div className='quiz'>
-				<h3 className='question'>{this.state.question}</h3>
-				{this.state.words.map(function(word) {
-					return <div>{word.isCorrect}
-						<Word word={word.spanish} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected} /></div>;
-				}, this)}
-			</div>;
-		}
-	});
+		var options = [{spanish: q.spanish}];
 
-	var Word = React.createClass({
-		propTypes: {
-			word: React.PropTypes.string.isRequired,
-			onWordSelected: React.PropTypes.func.isRequired
-		},
-		getInitialState: function () {
-			return {
-				attemptClass: ''
-			};
-		},
-		handleClick: function() {
-			this.props.onWordSelected(this.props.word);
-		},
-		getButtonClass: function() {
-			if (this.props.isCorrect) {
-				return 'btn-success';
-			}
-			if (this.props.isCorrect === false) {
-				return 'btn-danger';
-			}
-			return '';
-		},
-		render: function() {
-			return <input type='button'
-			              className={'btn btn-default btn-lg btn-block ' + this.getButtonClass()}
-			              value={this.props.word}
-			              onClick={this.handleClick} />;
-		}
-	});
+		var possibleOptions = _.map(_.filter(allWords, function(w) {
 
-	function selectGame() {
-		var words = _.map(_.shuffle(this, []).slice(0, 4), function(w) {
-			return _.clone(w);
+			return w.russian !== q.russian;
+		}), function(w) {
+
+			return {spanish: w.spanish};
 		});
 
-		var answer = words[_.random(words.length - 1)];
+		options = options.concat(_.shuffle(possibleOptions).slice(0, OPTIONS_COUNT - 1));
 
 		return {
-			words: words,
-			question: answer.russian,
-			checkAnswer: function(selectedWord) {
 
-				return selectedWord === answer.spanish;
-			}
+			question: q.russian,
+			options: _.shuffle(options)
 		};
+	});
+
+	return {
+
+		questionsCount: questionsCount,
+		questions: questions,
+
+		checkAnswer: (question, selectedWord) => {
+
+			var sameWord = _.find(allWords, function(w) {
+				return w.russian === question && w.spanish === selectedWord;
+			});
+			return sameWord ? true : false;
+		}
+	};
+}
+
+csv.read('../data/el_tiempo.txt', function (err, data) {
+
+	if (err) {
+		console.log(err);
+		return;
 	}
 
-	csv.read('data/sueña5.txt', function(err, data) {
+	data.selectGame = selectGame;
 
-		if (err) {
-			console.log(err);
-			return;
-		}
-
-		data.selectGame = selectGame;
-
-		React.render(
-			<Quiz data={data} />,
-			document.getElementById('app')
-		);
-	});
-})();
+	React.render(
+		<Quiz data={data}/>,
+		document.getElementById('app')
+	);
+});
