@@ -55,7 +55,8 @@ class Question extends React.Component {
 
 Question.propTypes = {
 	question: React.PropTypes.string.isRequired,
-	options: React.PropTypes.array.isRequired
+	options: React.PropTypes.array.isRequired,
+	checkAnswer: React.PropTypes.func.isRequired
 };
 
 module.exports = Question;

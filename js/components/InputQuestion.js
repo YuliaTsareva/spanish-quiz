@@ -65,9 +65,9 @@ class InputQuestion extends React.Component {
 	}
 }
 
-//todo require checkAnswer?
 InputQuestion.propTypes = {
-	question: React.PropTypes.string.isRequired
+	question: React.PropTypes.string.isRequired,
+	checkAnswer: React.PropTypes.func.isRequired
 };
 
 module.exports = InputQuestion;
