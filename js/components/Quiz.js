@@ -3,7 +3,8 @@ var React = require('react');
 
 var Progress = require('./Progress');
 var Question = require('./Question');
-//var Word = require('./Word');
+
+var InputQuestion = require('./InputQuestion');
 
 class Quiz extends React.Component {
 
@@ -56,12 +57,25 @@ class Quiz extends React.Component {
 
 	render() {
 
+		var question;
+
+		var randomBool = Math.random() >= 0.5;
+
+		if (randomBool) {
+
+			question = <Question question={this.state.currentQuestion.question}
+			                     options={this.state.currentQuestion.options}
+			                     checkAnswer={this.state.checkAnswer}
+			                     onQuestionAnswered={this.handleQuestionAnswered} />
+		} else {
+			question = <InputQuestion question={this.state.currentQuestion.question}
+			                          checkAnswer={this.state.checkAnswer}
+			                          onQuestionAnswered={this.handleQuestionAnswered} />;
+		}
+
 		return <div className='quiz'>
 			<Progress current={this.state.questionsDone} total={this.state.questionsCount} />
-			<Question question={this.state.currentQuestion.question}
-			          options={this.state.currentQuestion.options}
-					  checkAnswer={this.state.checkAnswer}
-				      onQuestionAnswered={this.handleQuestionAnswered} />
+			{question}
 		</div>;
 	}
 }
