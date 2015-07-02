@@ -32,6 +32,7 @@ function selectGame() {
 		return {
 
 			question: q.russian,
+			answer: q.spanish,
 			options: _.shuffle(options)
 		};
 	});
@@ -51,8 +52,7 @@ function selectGame() {
 	};
 }
 
-csv.read('../data/el_tiempo.txt', function (err, data) {
-//csv.read('../data/sueña5.txt', function (err, data) {
+csv.read('../data/geografía.txt', function (err, data) {
 
 	if (err) {
 		console.log(err);

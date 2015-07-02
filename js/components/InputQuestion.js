@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var React = require('react');
+var classNames = require('classnames');
 
 var Word = require('./Word');
 
@@ -10,6 +11,8 @@ class InputQuestion extends React.Component {
 
 		this.handleKeyDown = this.handleKeyDown.bind(this);
 		this.handleAnswerChanged = this.handleAnswerChanged.bind(this);
+		this.handleAnswerReady = this.handleAnswerReady.bind(this);
+		this.handleContinue = this.handleContinue.bind(this);
 
 		this.state = {
 			answer: ''
@@ -19,7 +22,8 @@ class InputQuestion extends React.Component {
 	componentWillReceiveProps() {
 
 		this.setState({
-				answer: ''
+				answer: '',
+				wrongAnswer: false
 			}
 		);
 	}
@@ -38,7 +42,9 @@ class InputQuestion extends React.Component {
 		if (isCorrect) {
 			this.props.onQuestionAnswered();
 		} else {
-			alert('Incorrecto.');
+			this.setState({
+				wrongAnswer: true
+			});
 		}
 	}
 
@@ -49,19 +55,47 @@ class InputQuestion extends React.Component {
 		}
 	}
 
+	handleContinue() {
+
+		this.props.onQuestionAnswered();
+	}
+
 	render() {
 
-		return <div className='question'>
+		var button;
+		var questionResult;
+
+		if (this.state.wrongAnswer) {
+			questionResult = <div className='questionResult'>
+								Incorrecto. La respuesta correcta es <span className='answer'>{this.props.answer}</span>.
+							</div>;
+
+			button = <input type='button'
+			                value='Continuar'
+			                className='btn btn-success btn-lg'
+			                onClick={this.handleContinue}/>
+		} else {
+			button = <input type='button'
+			                value='Comprobar'
+			                className='btn btn-success btn-lg'
+			                onClick={this.handleAnswerReady}/>;
+		}
+
+		var classes = classNames({
+			'question': true,
+			'error': this.state.wrongAnswer
+		});
+
+		return <div className={classes}>
 			<h3>{this.props.question}</h3>
 			<input type='text'
 			       value={this.state.answer}
 			       placeholder='Escriba aquí'
 			       onChange={this.handleAnswerChanged}
 			       onKeyDown={this.handleKeyDown} />
+			{button}
+			{questionResult}
 		</div>;
-		//<input type='button'
-		//       value='Comprobar'
-		//       className='btn btn-success' />
 	}
 }
 

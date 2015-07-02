@@ -59,7 +59,7 @@ class Quiz extends React.Component {
 
 		var question;
 
-		var randomBool = Math.random() >= 0.5;
+		var randomBool = Math.random() < 0.6;
 
 		if (randomBool) {
 
@@ -69,6 +69,7 @@ class Quiz extends React.Component {
 			                     onQuestionAnswered={this.handleQuestionAnswered} />
 		} else {
 			question = <InputQuestion question={this.state.currentQuestion.question}
+			                          answer={this.state.currentQuestion.answer}
 			                          checkAnswer={this.state.checkAnswer}
 			                          onQuestionAnswered={this.handleQuestionAnswered} />;
 		}
