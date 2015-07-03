@@ -1,0 +1,27 @@
+spanish,russian,meaning,example
+a ciegas,вслепую,sin reflexión o conocimiento,Al principio de la investigación, iban a ciegas.
+a ciencia cierta,,sin ninguna duda,No sabemos a ciencia cierta quién fue.
+a gusto
+a disgusto
+a las tantas
+a lo sumo
+a pedir de boca
+a pie juntillas
+a rabiar
+a bombo y platillo
+a capa y espalda
+a diestro y sintestro
+a tontas y a locas
+a trancas y barrancas
+a brazo partido
+a duras penas
+a flor de piel
+a grandes rasgos
+a la chita callando
+a la desesperada
+a ojo de buen cubero
+a rajatabla
+a regañadientes
+a sabiendas
+a tocateja
+a todas luces

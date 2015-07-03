@@ -5,16 +5,29 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	browserify = require('browserify'),
 	source = require('vinyl-source-stream'),
-	babelify = require('babelify');
+	babelify = require('babelify'),
+	watchify = require('watchify'),
+	_ = require('underscore'),
+	gutil = require('gulp-util');
 
-gulp.task('browserify', function() {
-	return browserify('./js/app.js', {debug: true})
-		.transform(babelify)
-		.bundle()
+
+var customOpts = {
+	entries: ['./js/app.js'],
+	debug: true
+};
+var opts = _.extend({}, watchify.args, customOpts);
+var b = watchify(browserify(opts));
+b.transform(babelify);
+
+function bundle() {
+	return b.bundle()
 		.pipe(source('app.min.js'))
 		.pipe(gulp.dest('./dist'))
 		.pipe(connect.reload());
-});
+}
+
+gulp.task('js', bundle);
+b.on('log', gutil.log);
 
 gulp.task('server', function() {
 	connect.server({
@@ -25,8 +38,7 @@ gulp.task('server', function() {
 gulp.task('watch', function() {
 
 	gulp.start('server');
-
-	gulp.watch(['./js/**/*.js'], ['browserify']);
+	b.on('update', bundle);
 });
 
-gulp.task('default', ['browserify', 'watch']);
+gulp.task('default', ['js', 'watch']);

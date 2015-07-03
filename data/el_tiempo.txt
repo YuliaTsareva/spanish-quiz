@@ -27,3 +27,6 @@ gélido,ледяной
 primaveral,весенний
 estival,летний
 agradable,приятный
+trueno,гром
+relampago,молния
+nublado,облачно
