@@ -1,27 +1,69 @@
-spanish,russian,meaning,example
-a ciegas,вслепую,sin reflexión o conocimiento,Al principio de la investigación, iban a ciegas.
-a ciencia cierta,,sin ninguna duda,No sabemos a ciencia cierta quién fue.
-a gusto
-a disgusto
-a las tantas
-a lo sumo
-a pedir de boca
-a pie juntillas
-a rabiar
-a bombo y platillo
-a capa y espalda
-a diestro y sintestro
-a tontas y a locas
-a trancas y barrancas
-a brazo partido
-a duras penas
-a flor de piel
-a grandes rasgos
-a la chita callando
-a la desesperada
-a ojo de buen cubero
-a rajatabla
-a regañadientes
-a sabiendas
-a tocateja
-a todas luces
+spanish,russian,meaning,example,other meaning
+a ciegas,вслепую,sin reflexión o conocimiento,"Al principio de la investigación, iban a ciegas.",
+a ciencia cierta,точно,sin ninguna duda,No sabemos a ciencia cierta quién fue.,
+a gusto,удобно,cómodamente,Me siento muy a gusto en esta casa.,de un modo acorde con el gusto de alguien
+a disgusto,,,,
+a las tantas,,,,
+a lo sumo,самое большее,como máximo,A lo sumo quedaron dos fichas por rellenar.,
+a pedir de boca,наилучшим образом,exactamente como se deseaba,"Todo está siendo fantástico, todo sale a pedir de boca",
+a pie juntillas,"без тени сомнения, в точности","aplicado a un escrito, tal como consta en él exactamente",Ese tema hay que saberlo a pie juntillas.,
+a rabiar,"очень сильно, до безумия",en cantidad muy grande,Este libro me gusta a rabiar.,
+a bombo y platillo,во всеуслышание,con publicidad y difusión extrema,Anunciaron la victoria con/a bombo y platillo.,
+a capa y espada,стоять горой за что-то,defendiendo algo con mucha convicción,Defendió sus ideas a capa y espada.,
+a diestro y sintestro,,,,
+a tontas y a locas,,,,
+a trancas y barrancas,,,,
+a brazo partido,"яростно, отчаянно",con un esfuerzo enorme,Lucharon a brazo partido contra la invasión.,
+a duras penas,с большим трудом,indica que algo se hace con grandes dificultades,A duras penas lográbamos comer.,
+a flor de piel,,que está sensible o se muestra con facilidad,Tengo los nervios a flor de piel.,
+a grandes rasgos,,,,
+a la chita callando,,,,
+a la desesperada,,,,
+a ojo de buen cubero,на глаз / приблизительно,aproximadamente,A ojo de buen cubero habría unas dos mil personas.,
+a rajatabla,,,,
+a regañadientes,"с неохотой, скрепя сердцe","de mala gana, a disgusto",Hizo los mandados a regañadientes.,
+a sabiendas,,,,
+a tocateja,,,,
+a todas luces,"очевидно, вне всякого сомнения",de manera clara y evidente,A todas luces se ve que eres el responsable de tu situación.,
+con el corazón en la mano,искренне,sinceramente,Con el corazón en la mano te digo que no puedo hacer más de lo que hago.,
+con la boca abierta,раскрыв рот от удивления,muy sorprendido,La noticia los dejó con la boca abierta.,
+con pelos y señales,,,,
+de buenas a primeras,"неожиданно, вдруг",de repente,De buenas a primeras me dijo que se iba.,
+de cabo a rabo,,,,
+de pascuas a ramos,редко,de vez en cuando,Nos visita de Pascuas a Ramos.,
+de uvas a peras,редко,de vez en cuando,,
+de andar por casa,,,,para andar por casa
+de capa caída,переживать тяжелое время,pasando por un mal momento,Hace unos cuantos años nuestra industria cinematográfica estaba de capa caída.,
+de carrerilla,,,,
+de golpe y porrazo,"неожиданно, внезапно","inesperadamente, de pronto",Como no podían tener más hijos se sometió a un proceso de fertilización y de golpe y porrazo se vieron padres de seis hijos.,
+de los que hacen época,,,,
+de mala muerte,жалкий,de poco valor o de mal aspecto,Estuvimos en un bar de mala muerte.,
+de padre y muy señor mío,очень сильный,de gran intensidad o magnitud,,
+de perilla,,,,
+de tres al cuarto,,,,
+de gorra,"даром, за чужой счет",a costa ajena,,
+de mal en peor,,,,
+de oídas,,,,
+de pacotilla,,,,
+en las propias narices de alguien,,,,
+en resumidas cuentas,,,,
+en un abrir y cerrar de ojos,в мгновение ока,rápidamente,En un abrir y cerrar de ojos lo perdió todo.,
+en un dos por tres,,,,
+en un santiamén,,,,
+entre bromas y beras,,,,
+entre la espada y la pared,,,,
+entre Pinto y Valdemoro,,,,
+por barba,,,,
+por cabeza,,,,
+por demás,,,,
+por las buenas,,,,
+por narices,,,,
+por los pelos,,,,
+por si acaso,,,,
+por si las moscas,,,,
+por un tubo,,,,
+sin falta,,,,
+sin ton ni son,,,,
+sin orden ni concierto,,,,
+sin comerlo ni beberlo,,,,
+sin decir esta boca es mía,не говоря никому ни слова,sin decir nada,,

@@ -11,7 +11,12 @@ var OPTIONS_COUNT = 4;
 
 function selectGame() {
 
-	var allWords = this;
+	var allWords = _.map(this, function(word) {
+		return {
+			spanish: word.spanish,
+			question: word.meaning || word.russian
+		};
+	});
 
 	var questionsCount = Math.min(allWords.length, MAX_QUESTIONS_COUNT);
 
@@ -21,7 +26,7 @@ function selectGame() {
 
 		var possibleOptions = _.map(_.filter(allWords, function(w) {
 
-			return w.russian !== q.russian;
+			return w.question !== q.question;
 		}), function(w) {
 
 			return {spanish: w.spanish};
@@ -31,7 +36,7 @@ function selectGame() {
 
 		return {
 
-			question: q.russian,
+			question: q.question,
 			answer: q.spanish,
 			options: _.shuffle(options)
 		};
@@ -45,19 +50,21 @@ function selectGame() {
 		checkAnswer: (question, selectedWord) => {
 
 			var sameWord = _.find(allWords, function(w) {
-				return w.russian === question && w.spanish === selectedWord;
+				return w.question === question && w.spanish === selectedWord;
 			});
 			return sameWord ? true : false;
 		}
 	};
 }
 
-csv.read('../data/geografía.txt', function (err, data) {
+csv.read('data/expresiones_con_preposición.txt', function (err, data) {
 
 	if (err) {
 		console.log(err);
 		return;
 	}
+
+	data = _.filter(data, item => item.meaning || item.russian);
 
 	data.selectGame = selectGame;
 

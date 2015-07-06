@@ -50,7 +50,6 @@ class Quiz extends React.Component {
 				newState.currentQuestion = newState.questions[questionDone];
 			}
 
-			console.log('currentQuestion ', newState.currentQuestion);
 			this.setState(newState);
 		}, 1000);
 	}

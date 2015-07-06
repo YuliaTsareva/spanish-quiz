@@ -32,7 +32,6 @@ class InputQuestion extends React.Component {
 		this.setState({
 			answer: e.target.value
 		});
-		console.log("answer: " + this.state.answer);
 	}
 
 	handleAnswerReady() {
