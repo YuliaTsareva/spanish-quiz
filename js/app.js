@@ -1,13 +1,12 @@
 'use strict';
 
+var config = require('./config');
+
 var _ = require('underscore');
 var React = require('react');
 
 var csv = require('./csv');
 var Quiz = require('./components/Quiz');
-
-var MAX_QUESTIONS_COUNT = 10;
-var OPTIONS_COUNT = 4;
 
 function selectGame() {
 
@@ -18,7 +17,7 @@ function selectGame() {
 		};
 	});
 
-	var questionsCount = Math.min(allWords.length, MAX_QUESTIONS_COUNT);
+	var questionsCount = Math.min(allWords.length, config.maxQuestionsCount);
 
 	var questions = _.map(_.shuffle(allWords).slice(0, questionsCount), function(q) {
 
@@ -32,7 +31,7 @@ function selectGame() {
 			return {spanish: w.spanish};
 		});
 
-		options = options.concat(_.shuffle(possibleOptions).slice(0, OPTIONS_COUNT - 1));
+		options = options.concat(_.shuffle(possibleOptions).slice(0, config.optionsCount - 1));
 
 		return {
 
