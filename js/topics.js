@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('underscore');
+
 var csv = require('./csv');
 var utils = require('./utils');
 
@@ -16,7 +17,6 @@ var topics = [
 ];
 
 function selectRandom(next) {
-
   var randomTopicIndex = utils.getRandomInt(topics.length);
 
   csv.read('data/' + topics[randomTopicIndex].filename, function (err, data) {
@@ -26,7 +26,14 @@ function selectRandom(next) {
       return;
     }
 
-    data = _.filter(data, item => item.russian);
+    data = _.filter(data, item => item.spanish && item.russian);
+
+    data = _.map(data, function (word) {
+      return {
+        question: word.russian,
+        answer: word.spanish
+      };
+    });
 
     next(data);
   });

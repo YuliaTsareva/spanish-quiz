@@ -21,6 +21,10 @@ b.transform(babelify);
 
 function bundle() {
   return b.bundle()
+    .on('error', function (err) {
+      console.log(err.toString());
+      this.emit("end");
+    })
     .pipe(source('app.min.js'))
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());

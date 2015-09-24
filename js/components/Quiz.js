@@ -23,7 +23,8 @@ class Quiz extends React.Component {
 
     return _.extend(state, {
       questionsDone: 0,
-      currentQuestion: state.questions[0]
+      currentQuestion: state.questions[0],
+      checkAnswer: state.checkAnswer.bind(state)
     });
   }
 

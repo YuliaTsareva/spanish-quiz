@@ -27,7 +27,7 @@ class Question extends React.Component {
 
     var isCorrect = this.props.checkAnswer(this.props.question, word);
 
-    var selected = _.find(this.state.options, w => w.spanish === word);
+    var selected = _.find(this.state.options, w => w.answer === word);
     selected.isCorrect = isCorrect;
 
     this.setState({
@@ -46,7 +46,7 @@ class Question extends React.Component {
       <h3>{this.props.question}</h3>
       {this.state.options.map(function (word) {
         return <div>{word.isCorrect}
-          <Word word={word.spanish} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
+          <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
         </div>;
       }, this)}
     </div>;

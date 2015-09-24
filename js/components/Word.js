@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Button = require('react-bootstrap').Button;
+
 class Word extends React.Component {
 
   constructor(props) {
@@ -13,19 +15,18 @@ class Word extends React.Component {
 
   getButtonClass() {
     if (this.props.isCorrect) {
-      return 'btn-success';
+      return 'success';
     }
     if (this.props.isCorrect === false) {
-      return 'btn-danger';
+      return 'danger';
     }
-    return '';
+    return 'default';
   }
 
   render() {
-    return <input type='button'
-                  className={'btn btn-default btn-lg btn-block ' + this.getButtonClass()}
-                  value={this.props.word}
-                  onClick={this.handleClick}/>;
+    return <Button bsSize="large" bsStyle={this.getButtonClass()} block
+                   onClick={this.handleClick}>{this.props.word}
+           </Button>;
   }
 }
 
