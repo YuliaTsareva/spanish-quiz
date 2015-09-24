@@ -1,11 +1,11 @@
 'use strict';
 
-var config = require('./config');
-
 var _ = require('underscore');
-var React = require('react');
 
-var csv = require('./csv');
+var config = require('./config');
+var topics = require('./topics');
+
+var React = require('react');
 var Quiz = require('./components/Quiz');
 
 function selectGame() {
@@ -56,15 +56,7 @@ function selectGame() {
 	};
 }
 
-csv.read('data/expresiones_con_preposición.txt', function (err, data) {
-
-	if (err) {
-		console.log(err);
-		return;
-	}
-
-	data = _.filter(data, item => item.meaning || item.russian);
-
+topics.selectRandom(function(data) {
 	data.selectGame = selectGame;
 
 	React.render(
