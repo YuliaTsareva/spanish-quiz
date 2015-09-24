@@ -10,57 +10,57 @@ var Quiz = require('./components/Quiz');
 
 function selectGame() {
 
-	var allWords = _.map(this, function(word) {
-		return {
-			spanish: word.spanish,
-			question: word.meaning || word.russian
-		};
-	});
+  var allWords = _.map(this, function (word) {
+    return {
+      spanish: word.spanish,
+      question: word.meaning || word.russian
+    };
+  });
 
-	var questionsCount = Math.min(allWords.length, config.maxQuestionsCount);
+  var questionsCount = Math.min(allWords.length, config.maxQuestionsCount);
 
-	var questions = _.map(_.shuffle(allWords).slice(0, questionsCount), function(q) {
+  var questions = _.map(_.shuffle(allWords).slice(0, questionsCount), function (q) {
 
-		var options = [{spanish: q.spanish}];
+    var options = [{spanish: q.spanish}];
 
-		var possibleOptions = _.map(_.filter(allWords, function(w) {
+    var possibleOptions = _.map(_.filter(allWords, function (w) {
 
-			return w.question !== q.question;
-		}), function(w) {
+      return w.question !== q.question;
+    }), function (w) {
 
-			return {spanish: w.spanish};
-		});
+      return {spanish: w.spanish};
+    });
 
-		options = options.concat(_.shuffle(possibleOptions).slice(0, config.optionsCount - 1));
+    options = options.concat(_.shuffle(possibleOptions).slice(0, config.optionsCount - 1));
 
-		return {
+    return {
 
-			question: q.question,
-			answer: q.spanish,
-			options: _.shuffle(options)
-		};
-	});
+      question: q.question,
+      answer: q.spanish,
+      options: _.shuffle(options)
+    };
+  });
 
-	return {
+  return {
 
-		questionsCount: questionsCount,
-		questions: questions,
+    questionsCount: questionsCount,
+    questions: questions,
 
-		checkAnswer: (question, selectedWord) => {
+    checkAnswer: (question, selectedWord) => {
 
-			var sameWord = _.find(allWords, function(w) {
-				return w.question === question && w.spanish === selectedWord;
-			});
-			return sameWord ? true : false;
-		}
-	};
+      var sameWord = _.find(allWords, function (w) {
+        return w.question === question && w.spanish === selectedWord;
+      });
+      return sameWord ? true : false;
+    }
+  };
 }
 
-topics.selectRandom(function(data) {
-	data.selectGame = selectGame;
+topics.selectRandom(function (data) {
+  data.selectGame = selectGame;
 
-	React.render(
-		<Quiz data={data}/>,
-		document.getElementById('app')
-	);
+  React.render(
+    <Quiz data={data}/>,
+    document.getElementById('app')
+  );
 });
