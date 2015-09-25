@@ -1,0 +1,14 @@
+spanish,russian
+paso de peatones,пешеходный переход
+paso de cebra,пешеходный переход
+farola,фонарь
+acera,тротуар
+bordillo,бордюр
+semáforo,светафор
+asfalto,асфальт
+manzana,квартал
+esquina,угол
+buzón,почтовый ящик
+señal de tráfico,дорожный знак
+rotonda,круговой перекресток
+carril,полоса (дороги)
