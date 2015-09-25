@@ -2,6 +2,8 @@ var _ = require('underscore');
 var React = require('react');
 var classNames = require('classnames');
 
+var Button = require('react-bootstrap').Button;
+
 var Word = require('./Word');
 
 class InputQuestion extends React.Component {
@@ -36,7 +38,7 @@ class InputQuestion extends React.Component {
 
   handleAnswerReady() {
 
-    var isCorrect = this.props.checkAnswer(this.props.question, this.state.answer.trim().toLowerCase());
+    var isCorrect = this.props.checkAnswer(this.props.question, this.state.answer.trim());
 
     if (isCorrect) {
       this.props.onQuestionAnswered();
@@ -61,23 +63,21 @@ class InputQuestion extends React.Component {
 
   render() {
 
-    var button;
     var questionResult;
 
+    var buttonHandler;
+    var buttonText;
+
     if (this.state.wrongAnswer) {
-      questionResult = <div className='questionResult'>
+      questionResult = <div className='question-result'>
         Incorrecto. La respuesta correcta es <span className='answer'>{this.props.answer}</span>.
       </div>;
 
-      button = <input type='button'
-                      value='Continuar'
-                      className='btn btn-success btn-lg'
-                      onClick={this.handleContinue}/>
+      buttonHandler = this.handleContinue;
+      buttonText = 'Continuar';
     } else {
-      button = <input type='button'
-                      value='Comprobar'
-                      className='btn btn-success btn-lg'
-                      onClick={this.handleAnswerReady}/>;
+      buttonHandler = this.handleAnswerReady;
+      buttonText = 'Comprobar';
     }
 
     var classes = classNames({
@@ -92,7 +92,7 @@ class InputQuestion extends React.Component {
              placeholder='Escriba aquí'
              onChange={this.handleAnswerChanged}
              onKeyDown={this.handleKeyDown}/>
-      {button}
+      <Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
       {questionResult}
     </div>;
   }

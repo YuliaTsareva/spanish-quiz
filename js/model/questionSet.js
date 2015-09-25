@@ -45,15 +45,15 @@ class QuestionSet {
     this.questionsCount = questions.length;
 
     this.topicWords = topicWords;
-
-    console.log('constructor', this.topicWords);
   }
 
   checkAnswer(question, userAnswer) {
+    userAnswer = userAnswer.toLowerCase();
 
     var sameWord = _.find(this.topicWords, function (w) {
-      return w.question === question && w.answer === userAnswer;
+      return w.question === question && w.answer.toLowerCase() === userAnswer;
     });
+
     return sameWord ? true : false;
   }
 }

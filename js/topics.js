@@ -7,19 +7,34 @@ var utils = require('./utils');
 
 var topics = [
   {
-    filename: 'weather.txt',
-    title: 'Tiempo'
+    name: 'weather',
+    spanish_title: 'Tiempo'
   },
   {
-    filename: 'geography.txt',
-    title: 'Geografía'
+    name: 'geography',
+    spanish_title: 'Geografía'
+  },
+  {
+    name: 'politics',
+    spanish_title: 'Política'
+  },
+  {
+    name: 'street',
+    spanish_title: 'Calle'
   }
 ];
 
-function selectRandom(next) {
+function getRandom() {
   var randomTopicIndex = utils.getRandomInt(topics.length);
+  return topics[randomTopicIndex];
+}
 
-  csv.read('data/' + topics[randomTopicIndex].filename, function (err, data) {
+function find(name) {
+  return _.find(topics, t => t.name === name);
+}
+
+function loadWords(topic, next) {
+  csv.read('data/' + topic.name + '.txt', function (err, data) {
 
     if (err) {
       console.log(err);
@@ -39,4 +54,6 @@ function selectRandom(next) {
   });
 }
 
-module.exports.selectRandom = selectRandom;
+module.exports.getRandom = getRandom;
+module.exports.find = find;
+module.exports.loadWords = loadWords;

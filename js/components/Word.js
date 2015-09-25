@@ -24,7 +24,7 @@ class Word extends React.Component {
   }
 
   render() {
-    return <Button bsSize="large" bsStyle={this.getButtonClass()} block
+    return <Button bsSize='large' bsStyle={this.getButtonClass()} block
                    onClick={this.handleClick}>{this.props.word}
            </Button>;
   }
