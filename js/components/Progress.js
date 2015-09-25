@@ -1,24 +1,22 @@
 var React = require('react');
 
+var ProgressBar = require('react-bootstrap').ProgressBar;
+
 class Progress extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	render() {
-		var percentage = (this.props.current * 100.0 / this.props.total) + '%';
-		return <div className="progress">
-			<div className="progress-bar progress-bar-success" role="progressbar" style={{width: percentage}}>
-				<span>{this.props.current}/{this.props.total}</span>
-			</div>
-		</div>;
-	}
+  render() {
+    var percentage = this.props.current * 100.0 / this.props.total;
+    return <ProgressBar striped bsStyle="success" now={percentage} />;
+  }
 }
 
 Progress.propTypes = {
-	current: React.PropTypes.number.isRequired,
-	total: React.PropTypes.number.isRequired
+  current: React.PropTypes.number.isRequired,
+  total: React.PropTypes.number.isRequired
 };
 
 module.exports = Progress;

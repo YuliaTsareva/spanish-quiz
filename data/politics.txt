@@ -1,0 +1,11 @@
+spanish,russian
+dimitir,выйти в отставку
+ministerio de Hacienda,министерство финансов
+ministro,министр
+lista electoral,список избирателей
+colegio electoral,избирательный участок
+libertad de voto,свободное голосование
+urna,избирательная урна
+oposición,опозиция
+partido,партия
+enmienda,поправка

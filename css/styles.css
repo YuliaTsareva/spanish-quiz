@@ -3,6 +3,11 @@ body {
     background-color: #e4e2e3;
 }
 
+.jumbotron {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
 #app {
     width: 80%;
     margin: auto;
@@ -21,17 +26,17 @@ h3 {
     width: 100%;
     margin-right: 10px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
-.question input[type="text"], .question input[type="button"] {
+.question input[type="text"], .question button {
     margin-top: 10px;
     vertical-align: middle;
 }
 
-.questionResult {
+.question-result {
     width: 80%;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px auto auto;
     font-size: 16px;
 }
 
@@ -39,11 +44,16 @@ h3 {
     border-color: rgba(255, 0, 0, 0.6);
 }
 
-.question.error .questionResult {
+.question.error .question-result {
     color: red;
 }
 
 .question.error .answer {
     font-size: 18px;
     text-decoration: underline;
+}
+
+.motivation-image {
+  max-width: 100%;
+  max-height: 100%;
 }

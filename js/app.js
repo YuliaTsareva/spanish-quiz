@@ -1,68 +1,32 @@
 'use strict';
 
 var _ = require('underscore');
-var React = require('react');
 
-var csv = require('./csv');
+var config = require('./config');
+var utils = require('./utils');
+var topics = require('./topics');
+var QuestionSet = require('./model/QuestionSet').QuestionSet;
+
+var React = require('react');
 var Quiz = require('./components/Quiz');
 
-var MAX_QUESTIONS_COUNT = 10;
-var OPTIONS_COUNT = 4;
+var topic = topics.find(utils.getUrlHash());
 
-function selectGame() {
-
-	var allWords = this;
-
-	var questionsCount = Math.min(allWords.length, MAX_QUESTIONS_COUNT);
-
-	var questions = _.map(_.shuffle(allWords).slice(0, questionsCount), function(q) {
-
-		var options = [{spanish: q.spanish}];
-
-		var possibleOptions = _.map(_.filter(allWords, function(w) {
-
-			return w.russian !== q.russian;
-		}), function(w) {
-
-			return {spanish: w.spanish};
-		});
-
-		options = options.concat(_.shuffle(possibleOptions).slice(0, OPTIONS_COUNT - 1));
-
-		return {
-
-			question: q.russian,
-			answer: q.spanish,
-			options: _.shuffle(options)
-		};
-	});
-
-	return {
-
-		questionsCount: questionsCount,
-		questions: questions,
-
-		checkAnswer: (question, selectedWord) => {
-
-			var sameWord = _.find(allWords, function(w) {
-				return w.russian === question && w.spanish === selectedWord;
-			});
-			return sameWord ? true : false;
-		}
-	};
+if (!topic) {
+  topic = topics.getRandom();
+  window.location.hash = topic.name;
 }
 
-csv.read('data/geografía.txt', function (err, data) {
+topics.loadWords(topic, function (topicWords) {
 
-	if (err) {
-		console.log(err);
-		return;
-	}
+  var data = {
+    selectGame: function() {
+      return QuestionSet.create(topicWords);
+    }
+  };
 
-	data.selectGame = selectGame;
-
-	React.render(
-		<Quiz data={data}/>,
-		document.getElementById('app')
-	);
+  React.render(
+    <Quiz data={data}/>,
+    document.getElementById('app')
+  );
 });

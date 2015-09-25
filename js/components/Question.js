@@ -5,58 +5,58 @@ var Word = require('./Word');
 
 class Question extends React.Component {
 
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.handleWordSelected = this.handleWordSelected.bind(this);
+    this.handleWordSelected = this.handleWordSelected.bind(this);
 
-		this.state = {
-			options: this.props.options
-		};
-	}
+    this.state = {
+      options: this.props.options
+    };
+  }
 
-	componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
 
-		this.setState({
-				options: nextProps.options
-			}
-		);
-	}
+    this.setState({
+        options: nextProps.options
+      }
+    );
+  }
 
-	handleWordSelected(word) {
+  handleWordSelected(word) {
 
-		var isCorrect = this.props.checkAnswer(this.props.question, word);
+    var isCorrect = this.props.checkAnswer(this.props.question, word);
 
-		var selected = _.find(this.state.options, w => w.spanish === word);
-		selected.isCorrect = isCorrect;
+    var selected = _.find(this.state.options, w => w.answer === word);
+    selected.isCorrect = isCorrect;
 
-		this.setState({
-			options: this.state.options
-		});
+    this.setState({
+      options: this.state.options
+    });
 
 
-		if (isCorrect) {
-			this.props.onQuestionAnswered();
-		}
-	}
+    if (isCorrect) {
+      this.props.onQuestionAnswered();
+    }
+  }
 
-	render() {
+  render() {
 
-		return <div className='question'>
-			<h3>{this.props.question}</h3>
-			{this.state.options.map(function (word) {
-				return <div>{word.isCorrect}
-					<Word word={word.spanish} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
-				</div>;
-			}, this)}
-		</div>;
-	}
+    return <div className='question'>
+      <h3>{this.props.question}</h3>
+      {this.state.options.map(function (word) {
+        return <div>{word.isCorrect}
+          <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
+        </div>;
+      }, this)}
+    </div>;
+  }
 }
 
 Question.propTypes = {
-	question: React.PropTypes.string.isRequired,
-	options: React.PropTypes.array.isRequired,
-	checkAnswer: React.PropTypes.func.isRequired
+  question: React.PropTypes.string.isRequired,
+  options: React.PropTypes.array.isRequired,
+  checkAnswer: React.PropTypes.func.isRequired
 };
 
 module.exports = Question;

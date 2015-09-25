@@ -1,86 +1,110 @@
 var _ = require('underscore');
 var React = require('react');
 
+var bootstrap = require('react-bootstrap');
+var Modal = bootstrap.Modal;
+var Button = bootstrap.Button;
+
+var config = require('./../config');
+
 var Progress = require('./Progress');
 var Question = require('./Question');
-
 var InputQuestion = require('./InputQuestion');
 
 class Quiz extends React.Component {
 
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
-		this.getInitialState = this.getInitialState.bind(this);
+    this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
+    this.createInitialState = this.createInitialState.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 
-		this.state = this.getInitialState();
-	}
+    this.state = this.createInitialState();
+  }
 
-	getInitialState() {
+  createInitialState() {
 
-		var state = this.props.data.selectGame();
+    var state = this.props.data.selectGame();
 
-		return _.extend(state, {
-			questionsDone: 0,
-			currentQuestion: state.questions[0]
-		});
-	}
+    return _.extend(state, {
+      questionsDone: 0,
+      currentQuestion: state.questions[0],
+      checkAnswer: state.checkAnswer.bind(state),
+      showModal: false
+    });
+  }
 
-	handleQuestionAnswered() {
+  handleQuestionAnswered() {
 
-		setTimeout(() => {
+    setTimeout(() => {
 
-			var questionDone = this.state.questionsDone + 1;
+      var questionDone = this.state.questionsDone + 1;
 
-			var newState;
+      var newState;
 
-			if (questionDone === this.state.questionsCount) {
+      if (questionDone === this.state.questionsCount) {
 
-				this.setState({
-					questionsDone: questionDone
-				});
+        this.setState({
+          questionsDone: questionDone
+        });
 
-				alert('You are AWESOME!');
-				newState = this.getInitialState();
-			} else {
+        newState = {
+          showModal: true
+        };
+      } else {
 
-				newState = this.state;
-				newState.questionsDone = questionDone;
-				newState.currentQuestion = newState.questions[questionDone];
-			}
+        newState = this.state;
+        newState.questionsDone = questionDone;
+        newState.currentQuestion = newState.questions[questionDone];
+      }
 
-			console.log('currentQuestion ', newState.currentQuestion);
-			this.setState(newState);
-		}, 1000);
-	}
+      this.setState(newState);
+    }, 1000);
+  }
 
-	render() {
+  closeModal() {
+    var newState = this.createInitialState();
+    this.setState(newState);
+  }
 
-		var question;
+  render() {
 
-		var randomBool = Math.random() < 0.6;
+    var question;
 
-		if (randomBool) {
+    var randomBool = Math.random() < config.inputQuestionProbability;
 
-			question = <Question question={this.state.currentQuestion.question}
-			                     options={this.state.currentQuestion.options}
-			                     checkAnswer={this.state.checkAnswer}
-			                     onQuestionAnswered={this.handleQuestionAnswered} />
-		} else {
-			question = <InputQuestion question={this.state.currentQuestion.question}
-			                          answer={this.state.currentQuestion.answer}
-			                          checkAnswer={this.state.checkAnswer}
-			                          onQuestionAnswered={this.handleQuestionAnswered} />;
-		}
+    if (randomBool) {
+      question = <InputQuestion question={this.state.currentQuestion.question}
+                                answer={this.state.currentQuestion.answer}
+                                checkAnswer={this.state.checkAnswer}
+                                onQuestionAnswered={this.handleQuestionAnswered}/>;
+    } else {
+      question = <Question question={this.state.currentQuestion.question}
+                           options={this.state.currentQuestion.options}
+                           checkAnswer={this.state.checkAnswer}
+                           onQuestionAnswered={this.handleQuestionAnswered}/>
+    }
 
-		return <div className='quiz'>
-			<Progress current={this.state.questionsDone} total={this.state.questionsCount} />
-			{question}
-		</div>;
-	}
+    return <div className='quiz'>
+      <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
+      {question}
+
+      <Modal show={this.state.showModal} onHide={this.closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>¡Estupendo!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img className='motivation-image' src={config.motivationImage} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.closeModal}>Otra vez</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>;
+  }
 }
 
-Quiz.propTypes = { data: React.PropTypes.array.isRequired };
+Quiz.propTypes = {data: React.PropTypes.object.isRequired};
 
 module.exports = Quiz;
