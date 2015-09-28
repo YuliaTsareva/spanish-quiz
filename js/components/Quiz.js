@@ -87,8 +87,15 @@ class Quiz extends React.Component {
     }
 
     return <div className='quiz'>
+      <div className='header'>
+      </div>
+
       <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
       {question}
+
+      <div className='footer'>
+          <Button className="check-button" bsSize='large' bsStyle='success'>Comprobar</Button>
+      </div>
 
       <Modal show={this.state.showModal} onHide={this.closeModal}>
         <Modal.Header closeButton>

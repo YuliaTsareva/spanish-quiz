@@ -43,12 +43,18 @@ class Question extends React.Component {
   render() {
 
     return <div className='question'>
-      <h3>{this.props.question}</h3>
-      {this.state.options.map(function (word) {
-        return <div>{word.isCorrect}
-          <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
-        </div>;
-      }, this)}
+      <div className="row">
+        <div className="col-xs-6">
+          <h3>{this.props.question}</h3>
+        </div>
+        <div className="col-xs-6">
+          {this.state.options.map(function (word) {
+            return <div>{word.isCorrect}
+              <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
+            </div>;
+          }, this)}
+        </div>
+      </div>
     </div>;
   }
 }
