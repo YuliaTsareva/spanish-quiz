@@ -8,7 +8,9 @@ var gulp = require('gulp'),
   babelify = require('babelify'),
   watchify = require('watchify'),
   _ = require('underscore'),
-  gutil = require('gulp-util');
+  gutil = require('gulp-util'),
+  postcss = require('gulp-postcss'),
+  cssVars = require('postcss-simple-vars');
 
 
 var customOpts = {
@@ -33,6 +35,16 @@ function bundle() {
 gulp.task('js', bundle);
 b.on('log', gutil.log);
 
+gulp.task('css', function () {
+  var processors = [ cssVars ];
+
+  return gulp.src('./css/*.css')
+    .pipe(postcss(processors))
+    .pipe(gulp.dest('./dist'))
+    .pipe(connect.reload());
+});
+//todo watch css
+
 gulp.task('server', function () {
   connect.server({
     livereload: true
@@ -43,6 +55,7 @@ gulp.task('watch', function () {
 
   gulp.start('server');
   b.on('update', bundle);
+  gulp.watch('css/*.css', ['css']);
 });
 
-gulp.task('default', ['js', 'watch']);
+gulp.task('default', ['js', 'css', 'watch']);
