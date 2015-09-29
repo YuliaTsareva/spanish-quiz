@@ -11,7 +11,7 @@ class Progress extends React.Component {
   render() {
     var percentage = 40;
     //var percentage = this.props.current * 100.0 / this.props.total;
-    return <ProgressBar striped bsStyle="success" now={percentage} />;
+    return <ProgressBar now={percentage} />;
   }
 }
 

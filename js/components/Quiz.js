@@ -86,29 +86,31 @@ class Quiz extends React.Component {
                            onQuestionAnswered={this.handleQuestionAnswered}/>
     }
 
-    return <div className='quiz'>
-      <div className='header'>
-      </div>
+    return (
+      <div className='quiz'>
+        <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
 
-      <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
-      {question}
+        <div className='question-area'>
+          {question}
+        </div>
 
-      <div className='footer'>
+        <div className='footer'>
           <Button className="check-button" bsSize='large' bsStyle='success'>Comprobar</Button>
-      </div>
+        </div>
 
-      <Modal show={this.state.showModal} onHide={this.closeModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>¡Estupendo!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <img className='motivation-image' src={config.motivationImage} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.closeModal}>Otra vez</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>;
+        <Modal show={this.state.showModal} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>¡Estupendo!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img className='motivation-image' src={config.motivationImage} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closeModal}>Otra vez</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
   }
 }
 
