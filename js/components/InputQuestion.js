@@ -92,11 +92,11 @@ class InputQuestion extends React.Component {
              placeholder='Escriba aquí'
              onChange={this.handleAnswerChanged}
              onKeyDown={this.handleKeyDown}/>
-      <Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
       {questionResult}
     </div>;
   }
 }
+//<Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
 
 InputQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,

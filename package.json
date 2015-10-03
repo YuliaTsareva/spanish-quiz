@@ -16,6 +16,7 @@
     "gulp-postcss": "^6.0.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.2.4",
+    "postcss-nested": "^1.0.0",
     "postcss-simple-vars": "^1.0.1",
     "vinyl-source-stream": "^1.1.0"
   },

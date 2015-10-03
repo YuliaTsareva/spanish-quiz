@@ -10,7 +10,8 @@ var gulp = require('gulp'),
   _ = require('underscore'),
   gutil = require('gulp-util'),
   postcss = require('gulp-postcss'),
-  cssVars = require('postcss-simple-vars');
+  cssVars = require('postcss-simple-vars'),
+  cssNested = require('postcss-nested');
 
 
 var customOpts = {
@@ -36,14 +37,13 @@ gulp.task('js', bundle);
 b.on('log', gutil.log);
 
 gulp.task('css', function () {
-  var processors = [ cssVars ];
+  var processors = [ cssVars, cssNested ];
 
   return gulp.src('./css/*.css')
     .pipe(postcss(processors))
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });
-//todo watch css
 
 gulp.task('server', function () {
   connect.server({

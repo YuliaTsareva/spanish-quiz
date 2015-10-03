@@ -25,19 +25,19 @@ class Question extends React.Component {
 
   handleWordSelected(word) {
 
-    var isCorrect = this.props.checkAnswer(this.props.question, word);
-
-    var selected = _.find(this.state.options, w => w.answer === word);
-    selected.isCorrect = isCorrect;
-
-    this.setState({
-      options: this.state.options
-    });
-
-
-    if (isCorrect) {
-      this.props.onQuestionAnswered();
-    }
+    //var isCorrect = this.props.checkAnswer(this.props.question, word);
+    //
+    //var selected = _.find(this.state.options, w => w.answer === word);
+    //selected.isCorrect = isCorrect;
+    //
+    //this.setState({
+    //  options: this.state.options
+    //});
+    //
+    //
+    //if (isCorrect) {
+    //  this.props.onQuestionAnswered();
+    //}
   }
 
   render() {

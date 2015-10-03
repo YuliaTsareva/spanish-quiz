@@ -32,7 +32,7 @@ body {
 
 .question-area {
   height: 313px;
-  padding-top: 50px;
+  padding: 25px 0;
 }
 
 h3 {
@@ -42,10 +42,13 @@ h3 {
 
 .question input[type="text"] {
     font-size: 20px;
-    width: 100%;
+    width: 600px;
     margin-right: 10px;
     text-align: center;
     margin-bottom: 5px;
+  border-radius: 100px;
+  height: 42px;
+  border: 1px solid #eee;
 }
 
 .question input[type="text"], .question button {
@@ -54,9 +57,9 @@ h3 {
 }
 
 .question-result {
-    width: 80%;
-    margin: 20px auto auto;
-    font-size: 16px;
+    /*width: 80%;*/
+    /*margin: 20px auto auto;*/
+    /*font-size: 16px;*/
 }
 
 .question.error input[type="text"] {
@@ -106,13 +109,9 @@ h3 {
   width: 150px;
   height: 42px;
   border-radius: 100px;
-  /*border-color: #7EB530;*/
-  /*background: #7EB530;*/
   border: 2px solid #ffffff;
-  /*color: #FFFFFF;*/
   color: #f1c40f;
   font-size: 17px;
-  /*font-weight: bold;*/
   background-color: #ffffff;
   text-transform: uppercase;
   font-weight: bolder;
@@ -121,10 +120,11 @@ h3 {
   right: 40px;
 }
 
-.check-button:hover {
+.check-button:hover, .check-button:focus {
   background-color: #f1c40f;
   border-color: #ffffff;
   color: #ffffff;
+  outline: none;
 }
 
 .option-button {
@@ -134,8 +134,14 @@ h3 {
   width: 300px;
 }
 
-.option-button:hover {
+.option-button:hover, .option-button:focus {
   background-color: #f1c40f;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.option-button:active {
+  background-color: #d7ad02;
   border-color: #ffffff;
   color: #ffffff;
 }
