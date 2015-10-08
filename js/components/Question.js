@@ -45,9 +45,7 @@ class Question extends React.Component {
     return <div className='question'>
       <h3>{this.props.question}</h3>
       {this.state.options.map(function (word) {
-        return <div>{word.isCorrect}
-          <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
-        </div>;
+        return <Word key={word.answer} word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>;
       }, this)}
     </div>;
   }
