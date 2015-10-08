@@ -3,7 +3,7 @@ var React = require('react');
 
 var Word = require('./Word');
 
-class Question extends React.Component {
+class SelectQuestion extends React.Component {
 
   constructor(props) {
     super(props);
@@ -34,7 +34,6 @@ class Question extends React.Component {
       options: this.state.options
     });
 
-
     if (isCorrect) {
       this.props.onQuestionAnswered();
     }
@@ -51,10 +50,10 @@ class Question extends React.Component {
   }
 }
 
-Question.propTypes = {
+SelectQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
   options: React.PropTypes.array.isRequired,
   checkAnswer: React.PropTypes.func.isRequired
 };
 
-module.exports = Question;
+module.exports = SelectQuestion;
