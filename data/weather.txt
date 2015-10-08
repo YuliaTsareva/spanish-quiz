@@ -28,5 +28,5 @@ primaveral,весенний
 estival,летний
 agradable,приятный
 trueno,гром
-relampago,молния
+relámpago,молния
 nublado,облачно
