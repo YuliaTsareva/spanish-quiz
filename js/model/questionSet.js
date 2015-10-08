@@ -47,7 +47,7 @@ class QuestionSet {
     this.topicWords = topicWords;
   }
 
-  checkAnswer(question, userAnswer) {
+  isRightAnswer(question, userAnswer) {
     userAnswer = userAnswer.toLowerCase();
 
     var sameWord = _.find(this.topicWords, function (w) {

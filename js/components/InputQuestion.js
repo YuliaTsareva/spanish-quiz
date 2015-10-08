@@ -11,7 +11,7 @@ class InputQuestion extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleAnswerChanged = this.handleAnswerChanged.bind(this);
     this.handleAnswerReady = this.handleAnswerReady.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
@@ -49,7 +49,10 @@ class InputQuestion extends React.Component {
     }
   }
 
-  handleKeyDown(e) {
+  handleKeyUp(e) {
+
+    this.props.onAnswerChanged(this.state.answer);
+
     if (e.keyCode == 13) {
 
       this.handleAnswerReady();
@@ -74,10 +77,8 @@ class InputQuestion extends React.Component {
       </div>;
 
       buttonHandler = this.handleContinue;
-      buttonText = 'Continuar';
     } else {
       buttonHandler = this.handleAnswerReady;
-      buttonText = 'Comprobar';
     }
 
     var classes = classNames({
@@ -91,7 +92,7 @@ class InputQuestion extends React.Component {
              value={this.state.answer}
              placeholder='Escriba aquí'
              onChange={this.handleAnswerChanged}
-             onKeyDown={this.handleKeyDown}/>
+             onKeyUp={this.handleKeyUp}/>
       {questionResult}
     </div>;
   }
@@ -100,7 +101,7 @@ class InputQuestion extends React.Component {
 
 InputQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
-  checkAnswer: React.PropTypes.func.isRequired
+  onAnswerChanged: React.PropTypes.func.isRequired
 };
 
 module.exports = InputQuestion;

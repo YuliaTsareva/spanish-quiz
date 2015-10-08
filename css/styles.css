@@ -1,6 +1,11 @@
-$yellow: #f1c40f;
+$yellow: #95a5a6;
 $darkyellow: #d7ad02;
-$green: #1abc9c;
+$green: #2ecc71;
+$progressgreen: #1abc9c;
+$red: #e74c3c;
+$blue: #95a5a6;
+/*$blue: #4FC3F7;*/
+
 
 body {
   background: #eeeeee;
@@ -27,7 +32,7 @@ body {
 }
 
 .progress-bar {
-  background-color: $green;
+  background-color: $progressgreen;
 }
 
 .quiz {
@@ -35,6 +40,7 @@ body {
 }
 
 .question-area {
+  /*height: 100%;*/
   height: 313px;
   padding: 25px 0;
 }
@@ -42,6 +48,10 @@ body {
 h3 {
     margin-top: 85px;
     font-size: 26px;
+}
+
+.question {
+  margin-top: 25px;
 }
 
 .question input[type="text"] {
@@ -107,9 +117,18 @@ h3 {
   /*position: absolute;*/
   /*bottom: 0;*/
   box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  transition: all 0.3s;
 }
 
-.check-button {
+.right-answer .footer {
+   background-color: $green;
+ }
+
+.error .footer {
+   background-color: $red;
+ }
+
+.quiz-button {
   width: 150px;
   height: 42px;
   border-radius: 100px;
@@ -125,10 +144,30 @@ h3 {
 
   &:hover, &:focus {
     background-color: $yellow;
-    border-color: #ffffff;
-    color: #ffffff;
+    border-color: #fff;
+    color: #fff;
     outline: none;
   }
+}
+
+.right-answer .quiz-button {
+  background-color: #fff;
+  color: $green;
+}
+
+.right-answer .quiz-button:hover {
+  background-color: $green;
+  color: #fff;
+}
+
+.error .quiz-button {
+  background-color: #fff;
+  color: $red;
+}
+
+.error .quiz-button:hover {
+  background-color: $red;
+  color: #fff;
 }
 
 .option-button {
@@ -138,14 +177,20 @@ h3 {
   width: 300px;
 
   &:hover, &:focus {
-    background-color: $yellow;
-    border-color: #ffffff;
-    color: #ffffff;
+    background-color: $blue;
+    border-color: #fff;
+    color: #fff;
   }
 
-  &:active {
-     background-color: $darkyellow;
-     border-color: #ffffff;
-     color: #ffffff;
-   }
+  /*&:active {*/
+     /*background-color: $darkyellow;*/
+     /*border-color: #ffffff;*/
+     /*color: #ffffff;*/
+   /*}*/
+}
+
+.right-answer .option-button, .right-answer .option-button:hover, .right-answer .option-button:focus {
+  background-color: #fff;
+  color: #999;
+  border: 1px solid #eee;
 }
