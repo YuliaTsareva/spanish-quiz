@@ -56,9 +56,10 @@ h3 {
   outline: none;
 }
 
-.question input[type="text"], .question button {
+.question input[type="text"] {
   margin-top: 10px;
   vertical-align: middle;
+  transition: border-color 0.5s;
 }
 
 .question-result {
@@ -68,11 +69,15 @@ h3 {
 }
 
 .question.error input[type="text"] {
-  border-color: rgba(255, 0, 0, 0.6);
+  border: 2px solid rgba(231, 76, 60, 0.75); // #e74c3c
+}
+
+.question.ok input[type="text"] {
+  border: 2px solid #2ecc71;
 }
 
 .question.error .question-result {
-  color: red;
+  color: #e74c3c;
 }
 
 .question.error .answer {
