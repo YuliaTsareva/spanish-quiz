@@ -88,7 +88,10 @@ class Quiz extends React.Component {
 
     return <div className='quiz'>
       <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
-      {question}
+
+      <div className='question-area'>
+        {question}
+      </div>
 
       <Modal show={this.state.showModal} onHide={this.closeModal}>
         <Modal.Header closeButton>

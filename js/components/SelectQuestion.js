@@ -41,12 +41,21 @@ class SelectQuestion extends React.Component {
 
   render() {
 
-    return <div className='question'>
-      <h3>{this.props.question}</h3>
-      {this.state.options.map(function (word) {
-        return <Word key={word.answer} word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>;
-      }, this)}
-    </div>;
+    return (
+      <div className='question'>
+        <div className="col-xs-12 col-sm-6">
+          <h3>{this.props.question}</h3>
+        </div>
+        <div className="col-xs-12 col-sm-6">
+          {this.state.options.map(function (word) {
+            return (
+              <Word key={word.answer + this.props.question} word={word.answer} isCorrect={word.isCorrect}
+                    onWordSelected={this.handleWordSelected}/>
+            );
+          }, this)}
+        </div>
+      </div>
+    );
   }
 }
 

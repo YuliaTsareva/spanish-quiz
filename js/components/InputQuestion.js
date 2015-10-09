@@ -52,7 +52,11 @@ class InputQuestion extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode == 13) {
 
-      this.handleAnswerReady();
+      if (this.state.wrongAnswer) {
+        this.handleContinue();
+      } else {
+        this.handleAnswerReady();
+      }
     }
   }
 
@@ -92,9 +96,11 @@ class InputQuestion extends React.Component {
              placeholder='Escriba aquí'
              onChange={this.handleAnswerChanged}
              onKeyDown={this.handleKeyDown}/>
-      <Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
+      <br />
       {questionResult}
     </div>;
+    //      <Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
+
   }
 }
 
