@@ -35,8 +35,7 @@ b.on('log', gutil.log);
 
 gulp.task('server', function () {
   connect.server({
-    livereload: true,
-    port: 8081
+    livereload: true
   });
 });
 
