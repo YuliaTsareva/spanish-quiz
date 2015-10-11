@@ -3,7 +3,7 @@ var React = require('react');
 
 var Word = require('./Word');
 
-class Question extends React.Component {
+class SelectQuestion extends React.Component {
 
   constructor(props) {
     super(props);
@@ -34,7 +34,6 @@ class Question extends React.Component {
       options: this.state.options
     });
 
-
     if (isCorrect) {
       this.props.onQuestionAnswered();
     }
@@ -42,21 +41,28 @@ class Question extends React.Component {
 
   render() {
 
-    return <div className='question'>
-      <h3>{this.props.question}</h3>
-      {this.state.options.map(function (word) {
-        return <div>{word.isCorrect}
-          <Word word={word.answer} isCorrect={word.isCorrect} onWordSelected={this.handleWordSelected}/>
-        </div>;
-      }, this)}
-    </div>;
+    return (
+      <div className='question'>
+        <div className="col-xs-12 col-sm-6">
+          <h3>{this.props.question}</h3>
+        </div>
+        <div className="col-xs-12 col-sm-6">
+          {this.state.options.map(function (word) {
+            return (
+              <Word key={word.answer + this.props.question} word={word.answer} isCorrect={word.isCorrect}
+                    onWordSelected={this.handleWordSelected}/>
+            );
+          }, this)}
+        </div>
+      </div>
+    );
   }
 }
 
-Question.propTypes = {
+SelectQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
   options: React.PropTypes.array.isRequired,
   checkAnswer: React.PropTypes.func.isRequired
 };
 
-module.exports = Question;
+module.exports = SelectQuestion;

@@ -8,6 +8,7 @@ var topics = require('./topics');
 var QuestionSet = require('./model/QuestionSet').QuestionSet;
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Quiz = require('./components/Quiz');
 
 var topic = topics.find(utils.getUrlHash());
@@ -25,7 +26,7 @@ topics.loadWords(topic, function (topicWords) {
     }
   };
 
-  React.render(
+  ReactDOM.render(
     <Quiz data={data}/>,
     document.getElementById('app')
   );

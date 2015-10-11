@@ -1,11 +1,29 @@
 spanish,russian
+colegio electoral,избирательный участок
+democracia,демократия
+derechas,правые
+dictadura,диктатура
 dimitir,выйти в отставку
+diputado,депутат
+enmienda,поправка
+escaño,депутатский мандат
+Gobierno,правительство
+guerra,война
+izquierdas,левые
+libertad de voto,свободное голосование
+lista electoral,список избирателей
 ministerio de Hacienda,министерство финансов
 ministro,министр
-lista electoral,список избирателей
-colegio electoral,избирательный участок
-libertad de voto,свободное голосование
-urna,избирательная урна
+monarquía,монархия
+oligarquía,олигархия
 oposición,опозиция
+Parlamento,парламент
 partido,партия
-enmienda,поправка
+paz,мир
+presidente,президент
+república,республика
+secretario de Estado,государственный секретарь
+Senado,сенат
+senador,сенатор
+urna,(избирательная) урна
+votación,голосование

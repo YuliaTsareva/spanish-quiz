@@ -8,7 +8,7 @@ var Button = bootstrap.Button;
 var config = require('./../config');
 
 var Progress = require('./Progress');
-var Question = require('./Question');
+var SelectQuestion = require('./SelectQuestion');
 var InputQuestion = require('./InputQuestion');
 
 class Quiz extends React.Component {
@@ -80,7 +80,7 @@ class Quiz extends React.Component {
                                 checkAnswer={this.state.checkAnswer}
                                 onQuestionAnswered={this.handleQuestionAnswered}/>;
     } else {
-      question = <Question question={this.state.currentQuestion.question}
+      question = <SelectQuestion question={this.state.currentQuestion.question}
                            options={this.state.currentQuestion.options}
                            checkAnswer={this.state.checkAnswer}
                            onQuestionAnswered={this.handleQuestionAnswered}/>
@@ -88,7 +88,10 @@ class Quiz extends React.Component {
 
     return <div className='quiz'>
       <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
-      {question}
+
+      <div className='question-area'>
+        {question}
+      </div>
 
       <Modal show={this.state.showModal} onHide={this.closeModal}>
         <Modal.Header closeButton>
