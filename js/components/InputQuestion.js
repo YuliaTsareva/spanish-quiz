@@ -25,6 +25,7 @@ class InputQuestion extends React.Component {
 
     this.setState({
         answer: '',
+        rightAnswer: false,
         wrongAnswer: false
       }
     );
@@ -41,6 +42,9 @@ class InputQuestion extends React.Component {
     var isCorrect = this.props.checkAnswer(this.props.question, this.state.answer.trim());
 
     if (isCorrect) {
+      this.setState({
+        rightAnswer: true
+      });
       this.props.onQuestionAnswered();
     } else {
       this.setState({
@@ -52,12 +56,15 @@ class InputQuestion extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode == 13) {
 
-      this.handleAnswerReady();
+      if (this.state.wrongAnswer) {
+        this.handleContinue();
+      } else {
+        this.handleAnswerReady();
+      }
     }
   }
 
   handleContinue() {
-
     this.props.onQuestionAnswered();
   }
 
@@ -65,24 +72,16 @@ class InputQuestion extends React.Component {
 
     var questionResult;
 
-    var buttonHandler;
-    var buttonText;
-
     if (this.state.wrongAnswer) {
       questionResult = <div className='question-result'>
         Incorrecto. La respuesta correcta es <span className='answer'>{this.props.answer}</span>.
       </div>;
-
-      buttonHandler = this.handleContinue;
-      buttonText = 'Continuar';
-    } else {
-      buttonHandler = this.handleAnswerReady;
-      buttonText = 'Comprobar';
     }
 
     var classes = classNames({
       'question': true,
-      'error': this.state.wrongAnswer
+      'error': this.state.wrongAnswer,
+      'ok': this.state.rightAnswer
     });
 
     return <div className={classes}>
@@ -92,7 +91,7 @@ class InputQuestion extends React.Component {
              placeholder='Escriba aquí'
              onChange={this.handleAnswerChanged}
              onKeyDown={this.handleKeyDown}/>
-      <Button bsSize='large' bsStyle='success' onClick={buttonHandler}>{buttonText}</Button>
+      <br />
       {questionResult}
     </div>;
   }
