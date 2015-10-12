@@ -1,23 +1,21 @@
-'use strict';
+import { getUrlHash } from './utils';
+import { find as findTopic, getRandom as getRandomTopic, loadWords} from './topics';
+import QuestionSet from './model/QuestionSet';
 
-var utils = require('./utils');
-var topics = require('./topics');
-var QuestionSet = require('./model/QuestionSet').QuestionSet;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Quiz from './components/Quiz';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Quiz = require('./components/Quiz');
-
-var topic = topics.find(utils.getUrlHash());
+let topic = findTopic(getUrlHash());
 
 if (!topic) {
-  topic = topics.getRandom();
+  topic = getRandomTopic();
   window.location.hash = topic.name;
 }
 
-topics.loadWords(topic, function (topicWords) {
+loadWords(topic, function (topicWords) {
 
-  var data = {
+  const data = {
     selectGame: function() {
       return QuestionSet.create(topicWords);
     }

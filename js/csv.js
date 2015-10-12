@@ -1,9 +1,7 @@
-'use strict';
+import parse from 'csv-parse';
 
-var parse = require('csv-parse');
-
-function read(url, callback) {
-  var xmlhttp = new XMLHttpRequest();
+export default function readCsv(url, callback) {
+  let xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == XMLHttpRequest.DONE) {
@@ -19,5 +17,3 @@ function read(url, callback) {
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
 }
-
-module.exports.read = read;

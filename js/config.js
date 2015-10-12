@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+export default {
   maxQuestionsCount: 10,
   optionsCount: 4,
   inputQuestionProbability: 0.3,

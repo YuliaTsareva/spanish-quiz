@@ -1,59 +1,49 @@
-'use strict';
+import readCsv from './csv';
+import { getRandomInt } from './utils';
 
-var _ = require('underscore');
-
-var csv = require('./csv');
-var utils = require('./utils');
-
-var topics = [
+const topics = [
   {
     name: 'weather',
-    spanish_title: 'Tiempo'
+    spanishTitle: 'Tiempo'
   },
   {
     name: 'geography',
-    spanish_title: 'Geografía'
+    spanishTitle: 'Geografía'
   },
   {
     name: 'politics',
-    spanish_title: 'Política'
+    spanishTitle: 'Política'
   },
   {
     name: 'street',
-    spanish_title: 'Calle'
+    spanishTitle: 'Calle'
   }
 ];
 
-function getRandom() {
-  var randomTopicIndex = utils.getRandomInt(topics.length);
+export function getRandom() {
+  const randomTopicIndex = getRandomInt(topics.length);
   return topics[randomTopicIndex];
 }
 
-function find(name) {
-  return _.find(topics, t => t.name === name);
+export function find(name) {
+  return topics.find(t => t.name === name);
 }
 
-function loadWords(topic, next) {
-  csv.read('data/' + topic.name + '.txt', function (err, data) {
+export function loadWords(topic, next) {
+  readCsv('data/' + topic.name + '.txt', function (err, data) {
 
     if (err) {
       console.log(err);
       return;
     }
 
-    data = _.filter(data, item => item.spanish && item.russian);
+    data = data.filter(item => item.spanish && item.russian);
 
-    data = _.map(data, function (word) {
-      return {
+    data = data.map(word => ({
         question: word.russian,
         answer: word.spanish
-      };
-    });
+      }));
 
     next(data);
   });
 }
-
-module.exports.getRandom = getRandom;
-module.exports.find = find;
-module.exports.loadWords = loadWords;

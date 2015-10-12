@@ -1,9 +1,7 @@
-var _ = require('underscore');
-var React = require('react');
+import React from 'react';
+import Option from './Option';
 
-var Word = require('./Word');
-
-class SelectQuestion extends React.Component {
+export default class SelectQuestion extends React.Component {
 
   constructor(props) {
     super(props);
@@ -25,9 +23,9 @@ class SelectQuestion extends React.Component {
 
   handleWordSelected(word) {
 
-    var isCorrect = this.props.checkAnswer(this.props.question, word);
+    const isCorrect = this.props.checkAnswer(this.props.question, word);
 
-    var selected = _.find(this.state.options, w => w.answer === word);
+    const selected = this.state.options.find(w => w.answer === word);
     selected.isCorrect = isCorrect;
 
     this.setState({
@@ -49,8 +47,8 @@ class SelectQuestion extends React.Component {
         <div className="col-xs-12 col-sm-6">
           {this.state.options.map(function (word) {
             return (
-              <Word key={word.answer + this.props.question} word={word.answer} isCorrect={word.isCorrect}
-                    onWordSelected={this.handleWordSelected}/>
+              <Option key={word.answer + this.props.question} word={word.answer} isCorrect={word.isCorrect}
+                      onOptionSelected={this.handleWordSelected}/>
             );
           }, this)}
         </div>
@@ -64,5 +62,3 @@ SelectQuestion.propTypes = {
   options: React.PropTypes.array.isRequired,
   checkAnswer: React.PropTypes.func.isRequired
 };
-
-module.exports = SelectQuestion;

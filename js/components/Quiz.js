@@ -1,17 +1,13 @@
-var _ = require('underscore');
-var React = require('react');
+import React from 'react';
 
-var bootstrap = require('react-bootstrap');
-var Modal = bootstrap.Modal;
-var Button = bootstrap.Button;
+import config from '../config';
 
-var config = require('./../config');
+import { Modal, Button } from 'react-bootstrap';
+import Progress from './Progress';
+import SelectQuestion from './SelectQuestion';
+import InputQuestion from './InputQuestion';
 
-var Progress = require('./Progress');
-var SelectQuestion = require('./SelectQuestion');
-var InputQuestion = require('./InputQuestion');
-
-class Quiz extends React.Component {
+export default class Quiz extends React.Component {
 
   constructor(props) {
     super(props);
@@ -24,24 +20,22 @@ class Quiz extends React.Component {
   }
 
   createInitialState() {
-
-    var state = this.props.data.selectGame();
-
-    return _.extend(state, {
+    const state = this.props.data.selectGame();
+    return {
+      ...state,
       questionsDone: 0,
       currentQuestion: state.questions[0],
       checkAnswer: state.checkAnswer.bind(state),
       showModal: false
-    });
+    };
   }
 
   handleQuestionAnswered() {
-
     setTimeout(() => {
 
-      var questionDone = this.state.questionsDone + 1;
+      const questionDone = this.state.questionsDone + 1;
 
-      var newState;
+      let newState;
 
       if (questionDone === this.state.questionsCount) {
 
@@ -64,15 +58,14 @@ class Quiz extends React.Component {
   }
 
   closeModal() {
-    var newState = this.createInitialState();
+    const newState = this.createInitialState();
     this.setState(newState);
   }
 
   render() {
+    let question;
 
-    var question;
-
-    var randomBool = Math.random() < config.inputQuestionProbability;
+    const randomBool = Math.random() < config.inputQuestionProbability;
 
     if (randomBool) {
       question = <InputQuestion question={this.state.currentQuestion.question}
@@ -87,7 +80,7 @@ class Quiz extends React.Component {
     }
 
     return <div className='quiz'>
-      <Progress current={this.state.questionsDone} total={this.state.questionsCount}/>
+      <Progress done={this.state.questionsDone} total={this.state.questionsCount}/>
 
       <div className='question-area'>
         {question}
@@ -109,5 +102,3 @@ class Quiz extends React.Component {
 }
 
 Quiz.propTypes = {data: React.PropTypes.object.isRequired};
-
-module.exports = Quiz;

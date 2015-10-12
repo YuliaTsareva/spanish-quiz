@@ -1,12 +1,9 @@
-var _ = require('underscore');
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
-var Button = require('react-bootstrap').Button;
+import { Button } from 'react-bootstrap';
 
-var Word = require('./Word');
-
-class InputQuestion extends React.Component {
+export default class InputQuestion extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,7 +19,6 @@ class InputQuestion extends React.Component {
   }
 
   componentWillReceiveProps() {
-
     this.setState({
         answer: '',
         rightAnswer: false,
@@ -38,8 +34,7 @@ class InputQuestion extends React.Component {
   }
 
   handleAnswerReady() {
-
-    var isCorrect = this.props.checkAnswer(this.props.question, this.state.answer.trim());
+    const isCorrect = this.props.checkAnswer(this.props.question, this.state.answer.trim());
 
     if (isCorrect) {
       this.setState({
@@ -69,8 +64,7 @@ class InputQuestion extends React.Component {
   }
 
   render() {
-
-    var questionResult;
+    let questionResult;
 
     if (this.state.wrongAnswer) {
       questionResult = <div className='question-result'>
@@ -78,7 +72,7 @@ class InputQuestion extends React.Component {
       </div>;
     }
 
-    var classes = classNames({
+    const classes = classNames({
       'question': true,
       'error': this.state.wrongAnswer,
       'ok': this.state.rightAnswer
@@ -101,5 +95,3 @@ InputQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
   checkAnswer: React.PropTypes.func.isRequired
 };
-
-module.exports = InputQuestion;

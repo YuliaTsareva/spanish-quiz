@@ -1,22 +1,14 @@
-var React = require('react');
+import React from 'react';
+import { ProgressBar } from 'react-bootstrap';
 
-var ProgressBar = require('react-bootstrap').ProgressBar;
-
-class Progress extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    var percentage = this.props.current * 100.0 / this.props.total;
-    return <ProgressBar now={percentage} />;
-  }
-}
+let Progress = (props) => {
+  const percentage = props.done * 100.0 / props.total;
+  return <ProgressBar now={percentage}/>;
+};
 
 Progress.propTypes = {
-  current: React.PropTypes.number.isRequired,
+  done: React.PropTypes.number.isRequired,
   total: React.PropTypes.number.isRequired
 };
 
-module.exports = Progress;
+export default Progress;

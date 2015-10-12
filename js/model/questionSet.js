@@ -1,12 +1,11 @@
-var _ = require('underscore');
+import _ from 'underscore';
+import config from '../config';
 
-var config = require('../config');
-
-class QuestionSet {
+export default class QuestionSet {
 
   static create(topicWords) {
-    var questionsCount = Math.min(topicWords.length, config.maxQuestionsCount);
-    var questions = _.shuffle(topicWords).slice(0, questionsCount);
+    const questionsCount = Math.min(topicWords.length, config.maxQuestionsCount);
+    let questions = _.shuffle(topicWords).slice(0, questionsCount);
 
     questions = QuestionSet.fillQuestionsWithOptions(questions, topicWords);
 
@@ -15,12 +14,11 @@ class QuestionSet {
 
   static fillQuestionsWithOptions(questions, topicWords) {
 
-    return _.map(questions, function (q) {
+    return questions.map(q => {
 
-      var options = [{answer: q.answer}].concat(QuestionSet.selectWrongOptions(q, topicWords));
+      const options = [{answer: q.answer}].concat(QuestionSet.selectWrongOptions(q, topicWords));
 
       return {
-
         question: q.question,
         answer: q.answer,
         options: _.shuffle(options)
@@ -29,7 +27,7 @@ class QuestionSet {
   }
 
   static selectWrongOptions(question, topicWords) {
-    var wrongOptions = _.map(_.filter(topicWords, function (w) {
+    const wrongOptions = _.map(_.filter(topicWords, function (w) {
 
       return w.question !== question.question;
     }), function (w) {
@@ -50,12 +48,9 @@ class QuestionSet {
   checkAnswer(question, userAnswer) {
     userAnswer = userAnswer.toLowerCase();
 
-    var sameWord = _.find(this.topicWords, function (w) {
-      return w.question === question && w.answer.toLowerCase() === userAnswer;
-    });
+    const isSameWord = w => w.question === question && w.answer.toLowerCase() === userAnswer;
 
+    const sameWord = this.topicWords.find(isSameWord);
     return sameWord ? true : false;
   }
 }
-
-module.exports.QuestionSet = QuestionSet;
