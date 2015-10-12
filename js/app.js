@@ -1,8 +1,5 @@
 'use strict';
 
-var _ = require('underscore');
-
-var config = require('./config');
 var utils = require('./utils');
 var topics = require('./topics');
 var QuestionSet = require('./model/QuestionSet').QuestionSet;
