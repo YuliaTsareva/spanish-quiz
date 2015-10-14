@@ -80,9 +80,11 @@ export default class InputQuestion extends React.Component {
 
     return <div className={classes}>
       <h3>{this.props.question}</h3>
-      <input type='text'
+      <input ref='answerInput'
+             type='text'
              value={this.state.answer}
              placeholder='Escriba aquí'
+             autoFocus
              onChange={this.handleAnswerChanged}
              onKeyDown={this.handleKeyDown}/>
       <br />
