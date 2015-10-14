@@ -127,7 +127,7 @@ h3 {
   color: #fff;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 767px) {
   #app {
     position: absolute;
     width: 100%;

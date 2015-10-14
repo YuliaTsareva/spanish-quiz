@@ -94,5 +94,6 @@ export default class InputQuestion extends React.Component {
 
 InputQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
-  checkAnswer: React.PropTypes.func.isRequired
+  checkAnswer: React.PropTypes.func.isRequired,
+  onQuestionAnswered: React.PropTypes.func.isRequired
 };

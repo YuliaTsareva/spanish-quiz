@@ -60,5 +60,6 @@ export default class SelectQuestion extends React.Component {
 SelectQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
   options: React.PropTypes.array.isRequired,
-  checkAnswer: React.PropTypes.func.isRequired
+  checkAnswer: React.PropTypes.func.isRequired,
+  onQuestionAnswered: React.PropTypes.func.isRequired
 };
