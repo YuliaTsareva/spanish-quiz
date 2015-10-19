@@ -1,28 +1,20 @@
-import { getUrlHash } from './utils';
-import { find as findTopic, getRandom as getRandomTopic, loadWords} from './topics';
-import QuestionSet from './model/QuestionSet';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Quiz from './components/Quiz';
+import { Router, Route } from 'react-router';
+import { createHashHistory } from 'history';
 
-let topic = findTopic(getUrlHash());
+import TopicsGrid from './components/TopicsGrid';
+import Topic from './components/Topic';
+import NoMatch from './components/NoMatch';
 
-if (!topic) {
-  topic = getRandomTopic();
-  window.location.hash = topic.name;
-}
-
-loadWords(topic, function (topicWords) {
-
-  const data = {
-    selectGame: function() {
-      return QuestionSet.create(topicWords);
-    }
-  };
-
-  ReactDOM.render(
-    <Quiz data={data}/>,
-    document.getElementById('app')
-  );
+const history = createHashHistory({
+  queryKey: false
 });
+
+ReactDOM.render((
+  <Router history={history}>
+    <Route path="/" component={TopicsGrid}/>
+    <Route path="topic/:topic" component={Topic}/>
+    <Route path="*" component={NoMatch}/>
+  </Router>
+), document.getElementById('app'));
