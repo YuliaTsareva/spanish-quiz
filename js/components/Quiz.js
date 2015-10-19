@@ -21,6 +21,7 @@ export default class Quiz extends React.Component {
 
   createInitialState() {
     const state = this.props.data.selectGame();
+
     return {
       ...state,
       questionsDone: 0,
@@ -74,9 +75,9 @@ export default class Quiz extends React.Component {
                                 onQuestionAnswered={this.handleQuestionAnswered}/>;
     } else {
       question = <SelectQuestion question={this.state.currentQuestion.question}
-                           options={this.state.currentQuestion.options}
-                           checkAnswer={this.state.checkAnswer}
-                           onQuestionAnswered={this.handleQuestionAnswered}/>
+                                 options={this.state.currentQuestion.options}
+                                 checkAnswer={this.state.checkAnswer}
+                                 onQuestionAnswered={this.handleQuestionAnswered}/>
     }
 
     return <div className='quiz'>
@@ -91,7 +92,7 @@ export default class Quiz extends React.Component {
           <Modal.Title>¡Estupendo!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img className='motivation-image' src={config.motivationImage} />
+          <img className='motivation-image' src={config.motivationImage}/>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.closeModal}>Otra vez</Button>

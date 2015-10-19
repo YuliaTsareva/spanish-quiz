@@ -1,36 +1,31 @@
 import readCsv from './csv';
 import { getRandomInt } from './utils';
 
-const topics = [
+export const topics = [
   {
     name: 'weather',
-    spanishTitle: 'Tiempo'
+    spanishTitle: 'Tiempo',
+    imageUrl: 'images/topics/weather.jpg'
   },
   {
     name: 'geography',
-    spanishTitle: 'Geografía'
+    spanishTitle: 'Geografía',
+    imageUrl: 'images/topics/geography.jpg'
   },
   {
     name: 'politics',
-    spanishTitle: 'Política'
+    spanishTitle: 'Política',
+    imageUrl: 'images/topics/politics.jpg'
   },
   {
     name: 'street',
-    spanishTitle: 'Calle'
+    spanishTitle: 'Calle',
+    imageUrl: 'images/topics/street.jpg'
   }
 ];
 
-export function getRandom() {
-  const randomTopicIndex = getRandomInt(topics.length);
-  return topics[randomTopicIndex];
-}
-
-export function find(name) {
-  return topics.find(t => t.name === name);
-}
-
 export function loadWords(topic, next) {
-  readCsv('data/' + topic.name + '.txt', function (err, data) {
+  readCsv('data/' + topic + '.txt', function (err, data) {
 
     if (err) {
       console.log(err);
