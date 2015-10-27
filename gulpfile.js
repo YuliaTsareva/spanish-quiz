@@ -19,6 +19,12 @@ var customOpts = {
 };
 var opts = _.extend({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
+
+b.plugin('minifyify', {
+  output: './dist/app.js.map',
+  map: 'app.js.map'
+});
+
 b.transform(babelify);
 
 function bundle() {
