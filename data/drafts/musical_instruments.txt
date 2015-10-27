@@ -1,0 +1,19 @@
+spanish,russian
+trompeta
+saxofón
+arpa
+flauta
+maracas
+xilófano
+violín
+viola
+piano
+piano de cola
+batería
+contrabajo
+violonchelo
+harmónica
+trombón
+triangulo
+platos
+platillos
