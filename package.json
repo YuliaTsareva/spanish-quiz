@@ -4,7 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "node ./node_modules/eslint/bin/eslint js/**/*.js"
+    "test": "node ./node_modules/eslint/bin/eslint js/**"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "eslint-plugin-react": "^3.12.0",
     "gulp": "^3.9.0",
     "gulp-connect": "^2.3.1",
+    "gulp-eslint": "^1.1.1",
     "gulp-postcss": "^6.0.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",

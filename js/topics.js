@@ -1,5 +1,4 @@
 import readCsv from './csv';
-import { getRandomInt } from './utils';
 
 export const topics = [
   {
@@ -25,19 +24,18 @@ export const topics = [
 ];
 
 export function loadWords(topic, next) {
-  readCsv('data/' + topic + '.txt', function (err, data) {
-
+  readCsv('data/' + topic + '.txt', (err, data) => {
     if (err) {
       console.log(err);
       return;
     }
-
+    var a;
     data = data.filter(item => item.spanish && item.russian);
 
     data = data.map(word => ({
-        question: word.russian,
-        answer: word.spanish
-      }));
+      question: word.russian,
+      answer: word.spanish
+    }));
 
     next(data);
   });
