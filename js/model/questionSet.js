@@ -13,10 +13,8 @@ export default class QuestionSet {
   }
 
   static fillQuestionsWithOptions(questions, topicWords) {
-
     return questions.map(q => {
-
-      const options = [{answer: q.answer}].concat(QuestionSet.selectWrongOptions(q, topicWords));
+      const options = [{ answer: q.answer }].concat(QuestionSet.selectWrongOptions(q, topicWords));
 
       return {
         question: q.question,
@@ -27,13 +25,10 @@ export default class QuestionSet {
   }
 
   static selectWrongOptions(question, topicWords) {
-    const wrongOptions = _.map(_.filter(topicWords, function (w) {
-
-      return w.question !== question.question;
-    }), function (w) {
-
-      return {answer: w.answer};
-    });
+    const wrongOptions = _.map(
+      _.filter(topicWords, w => w.question !== question.question),
+      w => ({ answer: w.answer })
+    );
 
     return _.shuffle(wrongOptions).slice(0, config.optionsCount - 1);
   }
@@ -46,9 +41,9 @@ export default class QuestionSet {
   }
 
   checkAnswer(question, userAnswer) {
-    userAnswer = userAnswer.toLowerCase();
+    const userAnswerLowerCase = userAnswer.toLowerCase();
 
-    const isSameWord = w => w.question === question && w.answer.toLowerCase() === userAnswer;
+    const isSameWord = w => w.question === question && w.answer.toLowerCase() === userAnswerLowerCase;
 
     const sameWord = this.topicWords.find(isSameWord);
     return sameWord ? true : false;

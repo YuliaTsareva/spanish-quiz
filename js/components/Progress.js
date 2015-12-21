@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-let Progress = (props) => {
+const Progress = (props) => {
   const percentage = props.done * 100.0 / props.total;
   return <ProgressBar now={percentage}/>;
 };

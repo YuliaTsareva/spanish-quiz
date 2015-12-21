@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { loadWords} from './../topics';
+import { loadWords } from './../topics';
 import QuestionSet from './../model/QuestionSet';
 import Quiz from './Quiz';
 
@@ -10,12 +10,12 @@ export default class Topic extends React.Component {
 
     loadWords(props.params.topic, (topicWords) => {
       const data = {
-        selectGame: function () {
+        selectGame: () => {
           return QuestionSet.create(topicWords);
         }
       };
 
-      this.setState({ data: data });
+      this.setState({ data });
     });
   }
 
@@ -29,3 +29,11 @@ export default class Topic extends React.Component {
     return <Quiz data={this.state.data} />;
   }
 }
+
+Topic.propTypes = {
+  params: React.PropTypes.shape(
+    {
+      topic: React.PropTypes.string.isRequired
+    }
+  )
+};
