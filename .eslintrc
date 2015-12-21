@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "react/jsx-indent-props": 0
+  },
+  "ecmaFeatures": {
+    "experimentalObjectRestSpread": true
+  }
+}
