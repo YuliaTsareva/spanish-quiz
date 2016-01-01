@@ -14,15 +14,12 @@ export default class SelectQuestion extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     this.setState({
-        options: nextProps.options
-      }
-    );
+      options: nextProps.options
+    });
   }
 
   handleWordSelected(word) {
-
     const isCorrect = this.props.checkAnswer(this.props.question, word);
 
     const selected = this.state.options.find(w => w.answer === word);
@@ -38,17 +35,19 @@ export default class SelectQuestion extends React.Component {
   }
 
   render() {
-
     return (
-      <div className='question'>
+      <div className="question">
         <div className="col-xs-12 col-sm-6">
           <h3>{this.props.question}</h3>
         </div>
         <div className="col-xs-12 col-sm-6">
-          {this.state.options.map(function (word) {
+          {this.state.options.map(word => {
             return (
-              <Option key={word.answer + this.props.question} word={word.answer} isCorrect={word.isCorrect}
-                      onOptionSelected={this.handleWordSelected}/>
+              <Option key={word.answer + this.props.question}
+                      word={word.answer}
+                      isCorrect={word.isCorrect}
+                      onOptionSelected={this.handleWordSelected}
+              />
             );
           }, this)}
         </div>

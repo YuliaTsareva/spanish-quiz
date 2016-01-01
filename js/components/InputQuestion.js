@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Button } from 'react-bootstrap';
-
 export default class InputQuestion extends React.Component {
 
   constructor(props) {
@@ -15,16 +13,15 @@ export default class InputQuestion extends React.Component {
 
     this.state = {
       answer: ''
-    }
+    };
   }
 
   componentWillReceiveProps() {
     this.setState({
-        answer: '',
-        rightAnswer: false,
-        wrongAnswer: false
-      }
-    );
+      answer: '',
+      rightAnswer: false,
+      wrongAnswer: false
+    });
   }
 
   handleAnswerChanged(e) {
@@ -49,8 +46,7 @@ export default class InputQuestion extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (e.keyCode == 13) {
-
+    if (e.keyCode === 13) {
       if (this.state.wrongAnswer) {
         this.handleContinue();
       } else {
@@ -67,9 +63,9 @@ export default class InputQuestion extends React.Component {
     let questionResult;
 
     if (this.state.wrongAnswer) {
-      questionResult = <div className='question-result'>
-        Incorrecto. La respuesta correcta es <span className='answer'>{this.props.answer}</span>.
-      </div>;
+      questionResult = (<div className="question-result">
+        Incorrecto. La respuesta correcta es <span className="answer">{this.props.answer}</span>.
+      </div>);
     }
 
     const classes = classNames({
@@ -78,22 +74,25 @@ export default class InputQuestion extends React.Component {
       'ok': this.state.rightAnswer
     });
 
-    return <div className={classes}>
-      <h3>{this.props.question}</h3>
-      <input type='text'
-             value={this.state.answer}
-             placeholder='Escriba aquí'
-             autoFocus
-             onChange={this.handleAnswerChanged}
-             onKeyDown={this.handleKeyDown}/>
-      <br />
-      {questionResult}
-    </div>;
+    return (
+      <div className={classes}>
+        <h3>{this.props.question}</h3>
+        <input type="text"
+               value={this.state.answer}
+               placeholder="Escriba aquí"
+               autoFocus
+               onChange={this.handleAnswerChanged}
+               onKeyDown={this.handleKeyDown}
+        />
+        <br />
+        {questionResult}
+      </div>);
   }
 }
 
 InputQuestion.propTypes = {
   question: React.PropTypes.string.isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
-  onQuestionAnswered: React.PropTypes.func.isRequired
+  onQuestionAnswered: React.PropTypes.func.isRequired,
+  answer: React.PropTypes.string.isRequired
 };

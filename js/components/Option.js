@@ -8,10 +8,6 @@ export default class Option extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.props.onOptionSelected(this.props.word);
-  }
-
   getButtonClass() {
     if (this.props.isCorrect) {
       return 'success';
@@ -22,10 +18,19 @@ export default class Option extends React.Component {
     return 'default';
   }
 
+  handleClick() {
+    this.props.onOptionSelected(this.props.word);
+  }
+
   render() {
     return (
-      <Button className='option-button' bsSize='large' bsStyle={this.getButtonClass()} block
-              onClick={this.handleClick}>{this.props.word}
+      <Button className="option-button"
+              bsSize="large"
+              bsStyle={this.getButtonClass()}
+              block
+              onClick={this.handleClick}
+      >
+        {this.props.word}
       </Button>
     );
   }
@@ -33,5 +38,6 @@ export default class Option extends React.Component {
 
 Option.propTypes = {
   word: React.PropTypes.string.isRequired,
-  onOptionSelected: React.PropTypes.func.isRequired
+  onOptionSelected: React.PropTypes.func.isRequired,
+  isCorrect: React.PropTypes.bool
 };

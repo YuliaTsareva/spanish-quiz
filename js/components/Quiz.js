@@ -33,13 +33,11 @@ export default class Quiz extends React.Component {
 
   handleQuestionAnswered() {
     setTimeout(() => {
-
       const questionDone = this.state.questionsDone + 1;
 
       let newState;
 
       if (questionDone === this.state.questionsCount) {
-
         this.setState({
           questionsDone: questionDone
         });
@@ -48,7 +46,6 @@ export default class Quiz extends React.Component {
           showModal: true
         };
       } else {
-
         newState = this.state;
         newState.questionsDone = questionDone;
         newState.currentQuestion = newState.questions[questionDone];
@@ -69,37 +66,40 @@ export default class Quiz extends React.Component {
     const randomBool = Math.random() < config.inputQuestionProbability;
 
     if (randomBool) {
-      question = <InputQuestion question={this.state.currentQuestion.question}
-                                answer={this.state.currentQuestion.answer}
-                                checkAnswer={this.state.checkAnswer}
-                                onQuestionAnswered={this.handleQuestionAnswered}/>;
-    } else {
-      question = <SelectQuestion question={this.state.currentQuestion.question}
-                                 options={this.state.currentQuestion.options}
+      question = (<InputQuestion question={this.state.currentQuestion.question}
+                                 answer={this.state.currentQuestion.answer}
                                  checkAnswer={this.state.checkAnswer}
-                                 onQuestionAnswered={this.handleQuestionAnswered}/>
+                                 onQuestionAnswered={this.handleQuestionAnswered}
+      />);
+    } else {
+      question = (<SelectQuestion question={this.state.currentQuestion.question}
+                                  options={this.state.currentQuestion.options}
+                                  checkAnswer={this.state.checkAnswer}
+                                  onQuestionAnswered={this.handleQuestionAnswered}
+      />);
     }
 
-    return <div className='quiz'>
-      <Progress done={this.state.questionsDone} total={this.state.questionsCount}/>
+    return (
+      <div className="quiz">
+        <Progress done={this.state.questionsDone} total={this.state.questionsCount}/>
 
-      <div className='question-area'>
-        {question}
-      </div>
+        <div className="question-area">
+          {question}
+        </div>
 
-      <Modal show={this.state.showModal} onHide={this.closeModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>¡Estupendo!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <img className='motivation-image' src={config.motivationImage}/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.closeModal}>Otra vez</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>;
+        <Modal show={this.state.showModal} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>¡Estupendo!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img className="motivation-image" src={config.motivationImage}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closeModal}>Otra vez</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>);
   }
 }
 
-Quiz.propTypes = {data: React.PropTypes.object.isRequired};
+Quiz.propTypes = { data: React.PropTypes.object.isRequired };
