@@ -1,0 +1,8 @@
+spanish,russian
+bañador,купальник
+chubasquero,непромокаемый плащ
+falda,юбка
+guantes,перчатки
+hebilla,пряжка
+vestido,платье
+tirantes,подтяжки

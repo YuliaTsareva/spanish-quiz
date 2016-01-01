@@ -20,6 +20,11 @@ export const topics = [
     name: 'street',
     spanishTitle: 'Calle',
     imageUrl: 'images/topics/street.jpg'
+  },
+  {
+    name: 'clothes',
+    spanishTitle: 'Ropa',
+    imageUrl: 'images/topics/clothes2.jpg'
   }
 ];
 
