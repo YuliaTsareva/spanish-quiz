@@ -24,7 +24,7 @@ export const topics = [
   {
     name: 'clothes',
     spanishTitle: 'Ropa',
-    imageUrl: 'images/topics/clothes2.jpg'
+    imageUrl: 'images/topics/clothes.jpg'
   }
 ];
 
