@@ -2,10 +2,13 @@ spanish,russian
 alianza,обручальное кольцо
 bañador,купальник
 blusa,блуза
+camisa,рубашка
 camiseta,футболка
 chal,шаль
 chubasquero,непромокаемый плащ
+corbata,галстук
 delantal,фартук
+deportivas,кроссовки
 falda,юбка
 guantes,перчатки
 hebilla,пряжка
@@ -13,8 +16,10 @@ horquilla,шпилька (для волос)
 impermeable,непромокаемый
 joyas,драгоценности
 lana,шерсть
+manoplas,варежки
 pana,вельвет
 pañuelo,платок
+pijama,пижама
 polo,поло
 vestido,платье
 tirantes,подтяжки
